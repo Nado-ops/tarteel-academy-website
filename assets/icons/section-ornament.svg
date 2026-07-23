@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 92" role="img" aria-label="Islamic floral ornament">
+  <path d="M60 3C49 15 34 18 30 34C14 38 8 51 8 67V88H112V67C112 51 106 38 90 34C86 18 71 15 60 3Z" fill="#062347" stroke="#d99a21" stroke-width="3"/>
+  <g fill="none" stroke="#d99a21" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M60 31 70 41 84 41 84 55 94 65 84 75 70 75 60 85 50 75 36 75 36 61 26 51 36 41 50 41Z"/>
+    <path d="M60 31 60 85M26 51 94 65M94 51 26 65M50 41 70 75M70 41 50 75"/>
+    <circle cx="60" cy="58" r="11"/>
+  </g>
+</svg>
