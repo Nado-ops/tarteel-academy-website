@@ -6,7 +6,7 @@
  */
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap");
 
-:root {
+.tarteel-home {
   --navy: #031d3d;
   --navy-deep: #00152f;
   --gold: #d99a25;
@@ -28,174 +28,219 @@
   --shadow-card: 0 6px 18px rgba(27, 31, 39, .11);
 }
 
-* { box-sizing: border-box; }
-html { overflow-x: hidden; scroll-behavior: smooth; }
-body { overflow-x: hidden; margin: 0; color: var(--ink); background: var(--ivory); font-family: var(--font-body); font-size: 15px; line-height: 1.5; }
-img { display: block; max-width: 100%; }
-a { color: inherit; text-decoration: none; }
-button, a { -webkit-tap-highlight-color: transparent; }
-a:focus-visible, button:focus-visible { outline: 3px solid #f4bd50; outline-offset: 3px; }
-.container { width: calc(100% - 40px); max-width: var(--container); margin-left: auto; margin-right: auto; }
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-.skip-link { position: fixed; z-index: 1000; top: 8px; left: 8px; padding: 10px 14px; background: #fff; color: var(--navy); transform: translateY(-150%); }
-.skip-link:focus { transform: none; }
-.eyebrow { margin: 0 0 8px; color: var(--gold); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .02em; }
-.btn { display: inline-flex; min-height: 48px; padding: 0 20px; align-items: center; justify-content: center; gap: 18px; border: 1px solid transparent; border-radius: var(--radius-sm); font-size: 13px; font-weight: 500; transition: transform .2s, box-shadow .2s, background .2s; }
-.btn:hover { transform: translateY(-2px); box-shadow: 0 7px 16px rgba(0,0,0,.18); }
-.btn--gold { background: linear-gradient(135deg, var(--gold-light), #c98813); color: #fff; }
-.btn--navy { min-height: 42px; background: var(--navy); color: #fff; }
-.btn--outline { border-color: var(--gold); color: #fff; }
+.tarteel-home * { box-sizing: border-box; }
+.tarteel-home { overflow-x: hidden; scroll-behavior: smooth; }
+.tarteel-home { overflow-x: hidden; margin: 0; color: var(--ink); background: var(--ivory); font-family: var(--font-body); font-size: 15px; line-height: 1.5; }
+.tarteel-home img { display: block; max-width: 100%; }
+.tarteel-home a { color: inherit; text-decoration: none; }
+.tarteel-home button, .tarteel-home a { -webkit-tap-highlight-color: transparent; }
+.tarteel-home a:focus-visible, .tarteel-home button:focus-visible { outline: 3px solid #f4bd50; outline-offset: 3px; }
+.tarteel-home .container { width: calc(100% - 40px); max-width: var(--container); margin-left: auto; margin-right: auto; }
+.tarteel-home .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.tarteel-home .skip-link { position: fixed; z-index: 1000; top: 8px; left: 8px; padding: 10px 14px; background: #fff; color: var(--navy); transform: translateY(-150%); }
+.tarteel-home .skip-link:focus { transform: none; }
+.tarteel-home .eyebrow { margin: 0 0 8px; color: var(--gold); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .02em; }
+.tarteel-home .btn { display: inline-flex; min-height: 48px; padding: 0 20px; align-items: center; justify-content: center; gap: 18px; border: 1px solid transparent; border-radius: var(--radius-sm); font-size: 13px; font-weight: 500; transition: transform .2s, box-shadow .2s, background .2s; }
+.tarteel-home .btn:hover { transform: translateY(-2px); box-shadow: 0 7px 16px rgba(0,0,0,.18); }
+.tarteel-home .btn--gold { background: linear-gradient(135deg, var(--gold-light), #c98813); color: #fff; }
+.tarteel-home .btn--navy { min-height: 42px; background: var(--navy); color: #fff; }
+.tarteel-home .btn--outline { border-color: var(--gold); color: #fff; }
 
-.topbar { height: 45px; background: var(--navy-deep); color: #fff; font-size: 12px; }
-.topbar__inner, .topbar__contact, .topbar__links { display: flex; height: 100%; align-items: center; }
-.topbar__inner { justify-content: space-between; }
-.topbar__contact, .topbar__links { gap: 20px; }
-.topbar__contact span { color: var(--gold); font-size: 9px; margin-right: 7px; }
-.topbar__links { gap: 14px; }
-.topbar__links i { display: block; height: 19px; width: 1px; background: rgba(255,255,255,.35); }
-.topbar a:hover { color: var(--gold-light); }
+.tarteel-home .topbar { height: 45px; background: var(--navy-deep); color: #fff; font-size: 12px; }
+.tarteel-home .topbar__inner, .tarteel-home .topbar__contact, .tarteel-home .topbar__links { display: flex; height: 100%; align-items: center; }
+.tarteel-home .topbar__inner { justify-content: space-between; }
+.tarteel-home .topbar__contact, .tarteel-home .topbar__links { gap: 20px; }
+.tarteel-home .topbar__contact span { color: var(--gold); font-size: 9px; margin-right: 7px; }
+.tarteel-home .topbar__links { gap: 14px; }
+.tarteel-home .topbar__links i { display: block; height: 19px; width: 1px; background: rgba(255,255,255,.35); }
+.tarteel-home .topbar a:hover { color: var(--gold-light); }
 
-.site-header { height: 72px; background: #fff; border-bottom: 1px solid #e5e2dd; }
-.header__inner { display: flex; height: 100%; align-items: center; }
-.site-brand { display: inline-flex; flex-shrink: 0; align-items: center; gap: 12px; text-decoration: none; }
-.site-brand-mark { display: block; width: 52px; height: 52px; background: transparent; object-fit: contain; }
-.site-brand-text { display: flex; flex-direction: column; justify-content: center; color: #071d3f; line-height: 1; }
-.site-brand-text strong { display: inline-block; padding-bottom: 4px; border-bottom: 2px solid #d99a1b; color: #071d3f; font-family: Georgia, "Times New Roman", serif; font-size: 20px; line-height: .88; letter-spacing: .4px; }
-.site-brand-text small { margin-top: 5px; font-size: 8px; line-height: 1.2; white-space: nowrap; }
-.primary-nav { display: flex; flex: 1; height: 100%; align-items: center; justify-content: flex-end; gap: clamp(18px, 2.2vw, 35px); }
-.primary-nav a { position: relative; display: flex; height: 100%; align-items: center; white-space: nowrap; font-size: 13px; font-weight: 500; }
-.primary-nav a:hover { color: var(--gold); }
-.primary-nav a.active::after { position: absolute; bottom: 26px; left: 0; width: 42px; height: 2px; background: var(--gold); content: ""; }
-.btn--apply { min-height: 49px; margin-left: 24px; border-color: var(--gold); color: #b6720b; }
-.menu-toggle { display: none; padding: 7px; border: 0; background: transparent; }
-.menu-toggle span:not(.sr-only) { display: block; width: 25px; height: 2px; margin: 5px; background: var(--navy); }
+.tarteel-home .site-header { height: 72px; background: #fff; border-bottom: 1px solid #e5e2dd; }
+.tarteel-home .header__inner { display: flex; height: 100%; align-items: center; }
+.tarteel-home .site-brand { display: inline-flex; flex-shrink: 0; align-items: center; gap: 12px; text-decoration: none; }
+.tarteel-home .site-brand-mark { display: block; width: 52px; height: 52px; background: transparent; object-fit: contain; }
+.tarteel-home .site-brand-text { display: flex; flex-direction: column; justify-content: center; color: #071d3f; line-height: 1; }
+.tarteel-home .site-brand-text strong { display: inline-block; padding-bottom: 4px; border-bottom: 2px solid #d99a1b; color: #071d3f; font-family: Georgia, "Times New Roman", serif; font-size: 20px; line-height: .88; letter-spacing: .4px; }
+.tarteel-home .site-brand-text small { margin-top: 5px; font-size: 8px; line-height: 1.2; white-space: nowrap; }
+.tarteel-home .primary-nav { display: flex; flex: 1; height: 100%; align-items: center; justify-content: flex-end; gap: clamp(18px, 2.2vw, 35px); }
+.tarteel-home .primary-nav a { position: relative; display: flex; height: 100%; align-items: center; white-space: nowrap; font-size: 13px; font-weight: 500; }
+.tarteel-home .primary-nav a:hover { color: var(--gold); }
+.tarteel-home .primary-nav a.active::after { position: absolute; bottom: 26px; left: 0; width: 42px; height: 2px; background: var(--gold); content: ""; }
+.tarteel-home .btn--apply { min-height: 49px; margin-left: 24px; border-color: var(--gold); color: #b6720b; }
+.tarteel-home .menu-toggle { display: none; padding: 7px; border: 0; background: transparent; }
+.tarteel-home .menu-toggle span:not(.sr-only) { display: block; width: 25px; height: 2px; margin: 5px; background: var(--navy); }
 
-.hero { position: relative; height: 492px; overflow: hidden; background-color: var(--navy-deep); background-image: url("/wp-content/uploads/tarteel-academy/assets/patterns/navy-geometric.svg"); background-repeat: no-repeat; background-position: center; background-size: 160px 160px; color: #fff; }
-.hero__inner { position: relative; display: grid; height: 100%; grid-template-columns: 49% 51%; }
-.hero__copy { position: relative; z-index: 2; padding: 86px 0 40px 2px; }
-.hero__copy::after { position: absolute; z-index: -1; inset: 0 -190px 0 -100vw; background: linear-gradient(90deg, rgba(0,21,47,.98) 70%, rgba(0,21,47,0)); content: ""; }
-.hero h1 { margin: 0 0 18px; font: 700 clamp(38px, 3.45vw, 56px)/1.16 var(--font-display); letter-spacing: -.035em; }
-.hero__lead { max-width: 590px; margin: 0 0 28px; font-size: 15px; line-height: 1.6; }
-.hero__actions { display: flex; gap: 18px; }
-.hero__image { position: absolute; top: 0; right: calc((var(--container) - 100vw) / 2); bottom: 0; left: 44%; overflow: hidden; background-image: url("/wp-content/uploads/tarteel-academy/assets/images/hero-learners-clean.png"); background-repeat: no-repeat; background-position: center; background-size: cover; }
+.tarteel-home .hero { position: relative; height: 492px; overflow: hidden; background-color: var(--navy-deep); background-image: url("/wp-content/uploads/tarteel-academy/assets/patterns/navy-geometric.svg"); background-repeat: no-repeat; background-position: center; background-size: 160px 160px; color: #fff; }
+.tarteel-home .hero__inner { position: relative; display: grid; height: 100%; grid-template-columns: 49% 51%; }
+.tarteel-home .hero__copy { position: relative; z-index: 2; padding: 86px 0 40px 2px; }
+.tarteel-home .hero__copy::after { position: absolute; z-index: -1; inset: 0 -190px 0 -100vw; background: linear-gradient(90deg, rgba(0,21,47,.98) 70%, rgba(0,21,47,0)); content: ""; }
+.tarteel-home .hero h1 { margin: 0 0 18px; font: 700 clamp(38px, 3.45vw, 56px)/1.16 var(--font-display); letter-spacing: -.035em; }
+.tarteel-home .hero__lead { max-width: 590px; margin: 0 0 28px; font-size: 15px; line-height: 1.6; }
+.tarteel-home .hero__actions { display: flex; gap: 18px; }
+.tarteel-home .hero__image { position: absolute; top: 0; right: calc((var(--container) - 100vw) / 2); bottom: 0; left: 44%; overflow: hidden; background-image: url("/wp-content/uploads/tarteel-academy/assets/images/hero-learners-clean.png"); background-repeat: no-repeat; background-position: center; background-size: cover; }
 
-.faculties { position: relative; z-index: 3; overflow: visible; min-height: 448px; margin-top: -24px; padding: 66px 0 31px; border-top: 3px solid var(--gold); border-radius: 58% 58% 0 0 / 36px 36px 0 0; background-color: #fffdfa; background-image: linear-gradient(rgba(255,255,255,.87),rgba(255,255,255,.87)), url("/wp-content/uploads/tarteel-academy/assets/patterns/ivory-geometric.svg"); background-repeat: no-repeat; background-position: center; background-size: 160px 160px; }
-.section-ornament { position: absolute; z-index: 20; top: -47px; left: 50%; width: 90px; height: auto; transform: translateX(-50%); pointer-events: none; }
-.section-ornament img { display: block; width: 100%; height: auto; }
-.section-heading { text-align: center; }
-.section-heading h2 { margin: 0; font: 700 27px/1.25 var(--font-display); }
-.heading-mark { display: block; color: var(--gold); font-size: 18px; }
-.heading-mark::before, .heading-mark::after { display: inline-block; width: 52px; height: 1px; margin: 0 8px 4px; background: var(--gold); content: ""; }
-.faculty-grid { display: grid; margin-top: 7px; grid-template-columns: repeat(5, 1fr); gap: 12px; }
-.faculty-card { min-height: 278px; padding: 0 16px 15px; border: 1px solid #e3d7c8; border-radius: 11px; background: rgba(255,255,255,.88); box-shadow: var(--shadow-card); text-align: center; transition: transform .2s, box-shadow .2s; }
-.faculty-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(27,31,39,.16); }
-.faculty-card img { width: 129px; height: 103px; margin: -18px auto 6px; object-fit: contain; }
-.faculty-card h3 { min-height: 48px; margin: 0; font: 700 17px/1.2 var(--font-display); }
-.faculty-card p { min-height: 58px; margin: 8px 0 10px; color: #222; font-size: 12.5px; line-height: 1.35; }
-.faculty-card a { display: flex; justify-content: center; gap: 18px; font-size: 12px; font-weight: 700; }
-.faculty-card--quran a { color: var(--navy); } .faculty-card--hifdh a { color: var(--green); } .faculty-card--skills a { color: var(--purple); } .faculty-card--social a { color: var(--orange); } .faculty-card--female a { color: var(--pink); }
+.tarteel-home .faculties { position: relative; z-index: 3; overflow: visible; min-height: 448px; margin-top: -24px; padding: 66px 0 31px; border-top: 3px solid var(--gold); border-radius: 58% 58% 0 0 / 36px 36px 0 0; background-color: #fffdfa; background-image: linear-gradient(rgba(255,255,255,.87),rgba(255,255,255,.87)), url("/wp-content/uploads/tarteel-academy/assets/patterns/ivory-geometric.svg"); background-repeat: no-repeat; background-position: center; background-size: 160px 160px; }
+.tarteel-home .section-ornament { position: absolute; z-index: 20; top: -47px; left: 50%; width: 90px; height: auto; transform: translateX(-50%); pointer-events: none; }
+.tarteel-home .section-ornament img { display: block; width: 100%; height: auto; }
+.tarteel-home .section-heading { text-align: center; }
+.tarteel-home .section-heading h2 { margin: 0; font: 700 27px/1.25 var(--font-display); }
+.tarteel-home .heading-mark { display: block; color: var(--gold); font-size: 18px; }
+.tarteel-home .heading-mark::before, .tarteel-home .heading-mark::after { display: inline-block; width: 52px; height: 1px; margin: 0 8px 4px; background: var(--gold); content: ""; }
+.tarteel-home .faculty-grid { display: grid; margin-top: 7px; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.tarteel-home .faculty-card { min-height: 278px; padding: 0 16px 15px; border: 1px solid #e3d7c8; border-radius: 11px; background: rgba(255,255,255,.88); box-shadow: var(--shadow-card); text-align: center; transition: transform .2s, box-shadow .2s; }
+.tarteel-home .faculty-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(27,31,39,.16); }
+.tarteel-home .faculty-card img { width: 129px; height: 103px; margin: -18px auto 6px; object-fit: contain; }
+.tarteel-home .faculty-card h3 { min-height: 48px; margin: 0; font: 700 17px/1.2 var(--font-display); }
+.tarteel-home .faculty-card p { min-height: 58px; margin: 8px 0 10px; color: #222; font-size: 12.5px; line-height: 1.35; }
+.tarteel-home .faculty-card a { display: flex; justify-content: center; gap: 18px; font-size: 12px; font-weight: 700; }
+.tarteel-home .faculty-card--quran a { color: var(--navy); } .tarteel-home .faculty-card--hifdh a { color: var(--green); } .tarteel-home .faculty-card--skills a { color: var(--purple); } .tarteel-home .faculty-card--social a { color: var(--orange); } .tarteel-home .faculty-card--female a { color: var(--pink); }
 
-.purpose { position: relative; display: grid; overflow: hidden; min-height: 250px; grid-template-columns: 1fr 1fr; background: var(--ivory); }
-.purpose__panel { display: flex; overflow: hidden; align-items: center; background-repeat: no-repeat; background-position: center; background-size: auto; }
-.purpose__panel--vision { justify-content: flex-end; border: 2px solid var(--gold); border-left: 0; border-radius: 0 48px 48px 0; background-color: var(--navy-deep); background-image: url("/wp-content/uploads/tarteel-academy/assets/patterns/navy-geometric.svg"); background-size: 160px 160px; color: #fff; }
-.purpose__panel--mission { background-color: var(--ivory); background-image: url("/wp-content/uploads/tarteel-academy/assets/patterns/ivory-geometric.svg"); background-size: 160px 160px; }
-.purpose__content { display: flex; width: min(100%, 620px); padding: 30px 70px 30px 48px; gap: 24px; }
-.purpose__panel--mission .purpose__content { padding-left: 72px; padding-right: 48px; }
-.purpose__icon { display: grid; flex: 0 0 58px; height: 58px; place-items: center; border: 1px solid var(--gold); border-radius: 50%; color: var(--gold); font-size: 27px; }
-.purpose__panel--mission .purpose__icon { border: 0; background: linear-gradient(135deg, #e4bc60, #c58a12); color: #fff; }
-.purpose h2 { margin: 0 0 8px; font: 400 26px/1.2 var(--font-display); }
-.purpose p { margin: 0; font-size: 12px; line-height: 1.52; }
-.purpose__ornament { position: absolute; z-index: 2; top: 50%; left: 50%; width: 69px; transform: translate(-50%,-50%); filter: drop-shadow(0 2px 3px rgba(0,0,0,.15)); }
+.tarteel-home.modal-open { overflow: hidden; }
+.tarteel-home .faculty-modal { position: fixed; z-index: 1000; inset: 0; display: grid; visibility: hidden; padding: 24px; place-items: center; opacity: 0; transition: opacity .22s ease, visibility .22s ease; }
+.tarteel-home .faculty-modal.is-open { visibility: visible; opacity: 1; }
+.tarteel-home .faculty-modal__backdrop { position: absolute; inset: 0; background: rgba(0, 14, 34, .72); backdrop-filter: blur(3px); }
+.tarteel-home .faculty-modal__dialog { position: relative; width: min(100%, 670px); max-height: calc(100vh - 48px); overflow-y: auto; padding: 34px 42px 38px; border-radius: 18px; background: #fff; box-shadow: 0 24px 70px rgba(0, 15, 36, .3); transform: scale(.96) translateY(10px); transition: transform .22s ease; scrollbar-gutter: stable; }
+.tarteel-home .faculty-modal.is-open .faculty-modal__dialog { transform: scale(1) translateY(0); }
+.tarteel-home .faculty-modal__close { position: absolute; top: 14px; right: 16px; display: grid; width: 38px; height: 38px; padding: 0; place-items: center; border: 0; border-radius: 50%; background: #f2eee7; color: var(--navy); font: 400 27px/1 var(--font-body); cursor: pointer; }
+.tarteel-home .faculty-modal__close:hover { background: #e8dfd2; }
+.tarteel-home .faculty-modal__icon { width: 105px; height: 84px; margin: 0 auto 8px; object-fit: contain; }
+.tarteel-home .faculty-modal__trim { width: 52px; height: 3px; margin: 0 auto 14px; border-radius: 3px; background: var(--modal-accent, var(--gold)); }
+.tarteel-home .faculty-modal h2 { margin: 0 40px 20px; color: var(--navy); font: 700 26px/1.25 var(--font-display); text-align: center; }
+.tarteel-home .faculty-modal__content { color: #30343a; font-size: 14px; line-height: 1.65; }
+.tarteel-home .faculty-modal__content p { margin: 0 0 15px; }
+.tarteel-home .faculty-modal__content h3 { margin: 22px 0 8px; color: var(--navy); font: 700 17px/1.3 var(--font-display); }
+.tarteel-home .faculty-modal__action { display: inline-flex; min-height: 46px; margin-top: 8px; padding: 0 20px; align-items: center; justify-content: center; border-radius: 8px; background: var(--modal-accent, var(--navy)); color: #fff; font-size: 13px; font-weight: 700; transition: filter .2s, transform .2s; }
+.tarteel-home .faculty-modal__action:hover { filter: brightness(1.08); transform: translateY(-1px); }
 
-.programmes { padding: 19px 0 14px; background: #fffcf7; }
-.programmes__heading { position: relative; margin-bottom: 15px; }
-.programmes__heading .btn { position: absolute; right: 0; bottom: 0; }
-.programme-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 31px; }
-.programme-card { overflow: hidden; min-height: 256px; border: 1px solid #e3ddd4; border-radius: 10px; background: #fff; box-shadow: var(--shadow-card); transition: transform .2s; }
-.programme-card:hover { transform: translateY(-4px); }
-.programme-card__image { position: relative; height: 127px; }
-.programme-card__image img { width: 100%; height: 100%; object-fit: cover; }
-.programme-card__badge { position: absolute; bottom: -23px; left: 50%; display: grid; width: 49px; height: 49px; transform: translateX(-50%); place-items: center; border: 2px solid #e4b348; border-radius: 50%; background: var(--navy); color: #fff; font-size: 21px; }
-.programme-card__badge--green { background: var(--green); } .programme-card__badge--orange { background: var(--orange); } .programme-card__badge--pink { background: var(--pink); }
-.programme-card__body { padding: 28px 18px 10px; text-align: center; }
-.programme-card h3 { margin: 0 0 8px; font: 400 17px/1.25 var(--font-display); }
-.programme-card p { min-height: 38px; margin: 0; font-size: 11.5px; line-height: 1.45; }
-.programme-card a { display: block; margin-top: 8px; font-size: 11px; }
-.programme-card a span { margin-left: 7px; color: var(--gold); }
-.stats { display: grid; min-height: 112px; margin-top: 16px; padding: 13px 22px; grid-template-columns: repeat(5, 1fr); border-radius: 19px; background: var(--navy-deep); color: #fff; box-shadow: 0 4px 10px rgba(0,0,0,.16); }
-.stat { display: flex; align-items: center; justify-content: center; gap: 14px; border-right: 1px solid rgba(218,154,37,.33); }
-.stat:last-child { border: 0; }
-.stat__icon { color: var(--gold); font-size: 36px; line-height: 1; }
-.stat strong { display: block; color: var(--gold-light); font: 400 26px/1.05 var(--font-display); }
-.stat small { display: block; margin-top: 4px; white-space: nowrap; font-size: 10px; }
+.tarteel-home .involvement-modal { position: fixed; z-index: 99999; inset: 0; display: grid; visibility: hidden; padding: 24px; place-items: center; opacity: 0; pointer-events: none; transition: opacity .25s ease, visibility .25s ease; }
+.tarteel-home .involvement-modal.is-open { visibility: visible; opacity: 1; pointer-events: auto; }
+.tarteel-home .involvement-modal__backdrop { position: absolute; inset: 0; background: rgba(2, 20, 48, .86); backdrop-filter: blur(7px); }
+.tarteel-home .involvement-modal__dialog { position: relative; z-index: 2; width: min(840px, 100%); max-height: calc(100vh - 40px); overflow-y: auto; padding: 42px 54px 36px; border: 1px solid #d99a1b; border-radius: 22px; background: linear-gradient(rgba(255, 250, 242, .96), rgba(255, 250, 242, .96)), url("/wp-content/uploads/tarteel-academy/assets/patterns/ivory-islamic-pattern.png"); background-size: auto, 260px; background-repeat: no-repeat, repeat; background-position: center, center; box-shadow: 0 24px 70px rgba(2, 20, 48, .35); transform: scale(.97) translateY(10px); transition: transform .25s ease; }
+.tarteel-home .involvement-modal.is-open .involvement-modal__dialog { transform: scale(1) translateY(0); }
+.tarteel-home .involvement-modal__close { position: absolute; top: 18px; right: 18px; width: 44px; height: 44px; padding: 0; border: 1px solid #d9dee7; border-radius: 50%; background: #fff; color: #071d3f; box-shadow: 0 6px 18px rgba(7, 29, 63, .08); font-size: 28px; line-height: 1; cursor: pointer; }
+.tarteel-home .involvement-modal__heading { max-width: 650px; margin: 0 auto 28px; text-align: center; }
+.tarteel-home .involvement-modal__motif { display: grid; width: 54px; height: 54px; margin: 0 auto 12px; place-items: center; color: #d99a1b; font-size: 34px; }
+.tarteel-home .involvement-modal__heading .section-kicker { display: inline-flex; align-items: center; gap: 12px; color: #b77a08; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; }
+.tarteel-home .involvement-modal__heading .section-kicker::before, .tarteel-home .involvement-modal__heading .section-kicker::after { width: 36px; height: 1px; background: #d99a1b; content: ""; }
+.tarteel-home .involvement-modal__heading h2 { margin: 10px 0; color: #071d3f; font-family: "Libre Baskerville", Georgia, serif; font-size: clamp(32px, 4vw, 44px); line-height: 1.1; }
+.tarteel-home .involvement-modal__heading p { max-width: 600px; margin: 0 auto; color: #4d5563; font-size: 16px; line-height: 1.6; }
+.tarteel-home .involvement-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.tarteel-home .involvement-option { display: flex; min-height: 330px; padding: 28px 22px 20px; flex-direction: column; align-items: center; border: 1px solid rgba(217, 154, 27, .45); border-radius: 18px; background: rgba(255, 255, 255, .88); box-shadow: 0 10px 26px rgba(7, 29, 63, .08); text-align: center; }
+.tarteel-home .involvement-option h3 { margin: 16px 0 12px; color: #071d3f; font-family: "Libre Baskerville", Georgia, serif; font-size: 26px; line-height: 1.2; }
+.tarteel-home .involvement-option p { flex: 1; max-width: 310px; margin: 0 auto 22px; color: #3f4754; font-size: 15px; line-height: 1.65; }
+.tarteel-home .involvement-option__icon { display: grid; width: 84px; height: 84px; place-items: center; border-radius: 50%; background: #071d3f; color: #d99a1b; box-shadow: 0 8px 20px rgba(7, 29, 63, .18); font-size: 34px; }
+.tarteel-home .involvement-option .button { display: inline-flex; width: 100%; min-height: 50px; padding: 0 20px; align-items: center; justify-content: center; gap: 12px; border-radius: 8px; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; }
+.tarteel-home .involvement-option .button--gold { background: linear-gradient(135deg, var(--gold-light), #c98813); }
+.tarteel-home .involvement-option .button--navy { background: var(--navy); }
 
-.cta-section { margin: 0; padding: 0; background: #fffcf7; }
-.cta { min-height: 190px; padding: 0; border: 2px solid var(--gold); border-bottom: 0; border-radius: 18px 18px 0 0; background-color: var(--navy); background-image: linear-gradient(rgba(3,29,61,.87),rgba(3,29,61,.87)), url("/wp-content/uploads/tarteel-academy/assets/patterns/navy-geometric.svg"); background-repeat: no-repeat; background-position: center; background-size: 160px 160px; color: #fff; }
-.cta-banner { position: relative; overflow: hidden; }
-.cta-inner { position: relative; z-index: 2; display: grid; min-height: 190px; padding-right: 96px; grid-template-columns: 32% 1fr 220px; align-items: center; gap: 28px; }
-.cta__image { position: relative; z-index: 1; width: 100%; min-height: 190px; background-image: linear-gradient(90deg, transparent 62%, var(--navy)), url("/wp-content/uploads/tarteel-academy/assets/images/cta-mosque-reference.png"); background-repeat: no-repeat; background-position: center; background-size: cover; border-radius: 17px 0 0 0; }
-.cta__copy { position: relative; z-index: 1; display: flex; padding: 24px 28px; flex-direction: column; align-items: flex-start; justify-content: center; }
-.cta h2 { margin: 0 0 6px; font: 400 26px/1.25 var(--font-display); }
-.cta p { margin: 0; }
-.cta-button-wrap { position: relative; z-index: 4; display: flex; align-items: center; justify-content: flex-end; }
-.cta-button { position: relative; top: auto; right: auto; min-width: 190px; margin: 0; white-space: nowrap; }
-.cta-arch { position: absolute; z-index: 1; right: 18px; bottom: 0; width: 64px; height: 96px; border: 4px solid var(--gold); border-bottom: 0; border-radius: 48px 48px 0 0; background-color: var(--navy-deep); background-image: url("/wp-content/uploads/tarteel-academy/assets/patterns/ivory-geometric.svg"); background-repeat: repeat; background-position: center; background-size: 120px 120px; pointer-events: none; opacity: .9; }
-.cta-arch img,
-.cta-arch svg { display: block; width: 100%; height: 100%; object-fit: contain; }
+.tarteel-home .purpose { position: relative; display: grid; overflow: hidden; min-height: 250px; grid-template-columns: 1fr 1fr; background: var(--ivory); }
+.tarteel-home .purpose__panel { display: flex; overflow: hidden; align-items: center; background-repeat: no-repeat; background-position: center; background-size: auto; }
+.tarteel-home .purpose__panel--vision { justify-content: flex-end; border: 2px solid var(--gold); border-left: 0; border-radius: 0 48px 48px 0; background-color: var(--navy-deep); background-image: url("/wp-content/uploads/tarteel-academy/assets/patterns/navy-geometric.svg"); background-size: 160px 160px; color: #fff; }
+.tarteel-home .purpose__panel--mission { background-color: var(--ivory); background-image: url("/wp-content/uploads/tarteel-academy/assets/patterns/ivory-geometric.svg"); background-size: 160px 160px; }
+.tarteel-home .purpose__content { display: flex; width: min(100%, 620px); padding: 30px 70px 30px 48px; gap: 24px; }
+.tarteel-home .purpose__panel--mission .purpose__content { padding-left: 72px; padding-right: 48px; }
+.tarteel-home .purpose__icon { display: grid; flex: 0 0 58px; height: 58px; place-items: center; border: 1px solid var(--gold); border-radius: 50%; color: var(--gold); font-size: 27px; }
+.tarteel-home .purpose__panel--mission .purpose__icon { border: 0; background: linear-gradient(135deg, #e4bc60, #c58a12); color: #fff; }
+.tarteel-home .purpose h2 { margin: 0 0 8px; font: 400 26px/1.2 var(--font-display); }
+.tarteel-home .purpose p { margin: 0; font-size: 12px; line-height: 1.52; }
+.tarteel-home .purpose__ornament { position: absolute; z-index: 2; top: 50%; left: 50%; width: 69px; transform: translate(-50%,-50%); filter: drop-shadow(0 2px 3px rgba(0,0,0,.15)); }
 
-.site-footer { position: relative; padding: 22px 0 0; background: var(--navy-deep); color: #fff; }
-.footer-grid { display: grid; padding-bottom: 20px; grid-template-columns: 1.35fr 1fr 1.1fr .95fr 1.3fr; gap: 37px; }
-.footer-grid > div:not(:first-child) { padding-left: 8px; }
-.footer-brand { max-width: 180px; border-right: 1px solid rgba(255,255,255,.2); }
-.footer-brand img { display: block; width: 130px; max-width: 100%; height: auto; margin-bottom: 18px; object-fit: contain; }
-.footer-brand svg { width: 130px; height: auto; }
-.footer-brand p { margin-top: 0; font-size: 13px; line-height: 1.5; }
-.footer-grid h3 { margin: 0 0 8px; color: var(--gold-light); font-size: 12px; font-weight: 500; }
-.footer-grid a, .footer-grid address { display: block; margin: 4px 0; font-size: 11px; font-style: normal; line-height: 1.35; }
-.footer-grid a:hover { color: var(--gold); }
-.footer-bottom { display: flex; min-height: 37px; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,.2); color: #aeb5c1; font-size: 10px; }
-.footer-bottom p { margin: 0; }
-.footer-bottom div { display: flex; align-items: center; gap: 11px; }
-.footer-bottom i { width: 1px; height: 13px; background: rgba(255,255,255,.35); }
-.back-to-top { position: absolute; right: 28px; bottom: 26px; display: grid; width: 41px; height: 41px; place-items: center; border-radius: 50%; background: var(--gold); color: #fff; }
+.tarteel-home .programmes { padding: 19px 0 14px; background: #fffcf7; }
+.tarteel-home .programmes__heading { position: relative; margin-bottom: 15px; }
+.tarteel-home .programmes__heading .btn { position: absolute; right: 0; bottom: 0; }
+.tarteel-home .programme-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 31px; }
+.tarteel-home .programme-card { overflow: hidden; min-height: 256px; border: 1px solid #e3ddd4; border-radius: 10px; background: #fff; box-shadow: var(--shadow-card); transition: transform .2s; }
+.tarteel-home .programme-card:hover { transform: translateY(-4px); }
+.tarteel-home .programme-card__image { position: relative; height: 127px; }
+.tarteel-home .programme-card__image img { width: 100%; height: 100%; object-fit: cover; }
+.tarteel-home .programme-card__badge { position: absolute; bottom: -23px; left: 50%; display: grid; width: 49px; height: 49px; transform: translateX(-50%); place-items: center; border: 2px solid #e4b348; border-radius: 50%; background: var(--navy); color: #fff; font-size: 21px; }
+.tarteel-home .programme-card__badge--green { background: var(--green); } .tarteel-home .programme-card__badge--orange { background: var(--orange); } .tarteel-home .programme-card__badge--pink { background: var(--pink); }
+.tarteel-home .programme-card__body { padding: 28px 18px 10px; text-align: center; }
+.tarteel-home .programme-card h3 { margin: 0 0 8px; font: 400 17px/1.25 var(--font-display); }
+.tarteel-home .programme-card p { min-height: 38px; margin: 0; font-size: 11.5px; line-height: 1.45; }
+.tarteel-home .programme-card a { display: block; margin-top: 8px; font-size: 11px; }
+.tarteel-home .programme-card a span { margin-left: 7px; color: var(--gold); }
+.tarteel-home .stats { display: grid; min-height: 112px; margin-top: 16px; padding: 13px 22px; grid-template-columns: repeat(5, 1fr); border-radius: 19px; background: var(--navy-deep); color: #fff; box-shadow: 0 4px 10px rgba(0,0,0,.16); }
+.tarteel-home .stat { display: flex; align-items: center; justify-content: center; gap: 14px; border-right: 1px solid rgba(218,154,37,.33); }
+.tarteel-home .stat:last-child { border: 0; }
+.tarteel-home .stat__icon { color: var(--gold); font-size: 36px; line-height: 1; }
+.tarteel-home .stat strong { display: block; color: var(--gold-light); font: 400 26px/1.05 var(--font-display); }
+.tarteel-home .stat small { display: block; margin-top: 4px; white-space: nowrap; font-size: 10px; }
 
-@media (max-width: 1180px) {
-  .primary-nav { gap: 15px; } .primary-nav a { font-size: 11px; } .brand { flex-basis: 185px; } .btn--apply { margin-left: 15px; }
-  .hero__image { left: 40%; } .programme-grid { gap: 18px; }
+.tarteel-home .cta-section { margin: 0; padding: 0; background: #fffcf7; }
+.tarteel-home .cta { min-height: 190px; padding: 0; border: 2px solid var(--gold); border-bottom: 0; border-radius: 18px 18px 0 0; background-color: var(--navy); background-image: linear-gradient(rgba(3,29,61,.87),rgba(3,29,61,.87)), url("/wp-content/uploads/tarteel-academy/assets/patterns/navy-geometric.svg"); background-repeat: no-repeat; background-position: center; background-size: 160px 160px; color: #fff; }
+.tarteel-home .cta-banner { position: relative; overflow: hidden; }
+.tarteel-home .cta-inner { position: relative; z-index: 2; display: grid; min-height: 190px; padding-right: 96px; grid-template-columns: 32% 1fr 220px; align-items: center; gap: 28px; }
+.tarteel-home .cta__image { position: relative; z-index: 1; width: 100%; min-height: 190px; background-image: linear-gradient(90deg, transparent 62%, var(--navy)), url("/wp-content/uploads/tarteel-academy/assets/images/cta-mosque-reference.png"); background-repeat: no-repeat; background-position: center; background-size: cover; border-radius: 17px 0 0 0; }
+.tarteel-home .cta__copy { position: relative; z-index: 1; display: flex; padding: 24px 28px; flex-direction: column; align-items: flex-start; justify-content: center; }
+.tarteel-home .cta h2 { margin: 0 0 6px; font: 400 26px/1.25 var(--font-display); }
+.tarteel-home .cta p { margin: 0; }
+.tarteel-home .cta-button-wrap { position: relative; z-index: 4; display: flex; align-items: center; justify-content: flex-end; }
+.tarteel-home .cta-button { position: relative; top: auto; right: auto; min-width: 190px; margin: 0; white-space: nowrap; }
+.tarteel-home .cta-arch { position: absolute; z-index: 1; right: 18px; bottom: 0; width: 64px; height: 96px; border: 4px solid var(--gold); border-bottom: 0; border-radius: 48px 48px 0 0; background-color: var(--navy-deep); background-image: url("/wp-content/uploads/tarteel-academy/assets/patterns/ivory-geometric.svg"); background-repeat: repeat; background-position: center; background-size: 120px 120px; pointer-events: none; opacity: .9; }
+.tarteel-home .cta-arch img, .tarteel-home .cta-arch svg { display: block; width: 100%; height: 100%; object-fit: contain; }
+
+.tarteel-home .site-footer { position: relative; padding: 22px 0 0; background: var(--navy-deep); color: #fff; }
+.tarteel-home .footer-grid { display: grid; padding-bottom: 20px; grid-template-columns: 1.35fr 1fr 1.1fr .95fr 1.3fr; gap: 37px; }
+.tarteel-home .footer-grid > div:not(:first-child) { padding-left: 8px; }
+.tarteel-home .footer-brand { max-width: 180px; border-right: 1px solid rgba(255,255,255,.2); }
+.tarteel-home .footer-brand img { display: block; width: 130px; max-width: 100%; height: auto; margin-bottom: 18px; object-fit: contain; }
+.tarteel-home .footer-brand svg { width: 130px; height: auto; }
+.tarteel-home .footer-brand p { margin-top: 0; font-size: 13px; line-height: 1.5; }
+.tarteel-home .footer-grid h3 { margin: 0 0 8px; color: var(--gold-light); font-size: 12px; font-weight: 500; }
+.tarteel-home .footer-grid a, .tarteel-home .footer-grid address { display: block; margin: 4px 0; font-size: 11px; font-style: normal; line-height: 1.35; }
+.tarteel-home .footer-grid a:hover { color: var(--gold); }
+.tarteel-home .footer-bottom { display: flex; min-height: 37px; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,.2); color: #aeb5c1; font-size: 10px; }
+.tarteel-home .footer-bottom p { margin: 0; }
+.tarteel-home .footer-bottom div { display: flex; align-items: center; gap: 11px; }
+.tarteel-home .footer-bottom i { width: 1px; height: 13px; background: rgba(255,255,255,.35); }
+.tarteel-home .back-to-top { position: absolute; right: 28px; bottom: 26px; display: grid; width: 41px; height: 41px; place-items: center; border-radius: 50%; background: var(--gold); color: #fff; }
+
+@media (max-width: 1180px){
+  .tarteel-home .primary-nav { gap: 15px; } .tarteel-home .primary-nav a { font-size: 11px; } .tarteel-home .brand { flex-basis: 185px; } .tarteel-home .btn--apply { margin-left: 15px; }
+  .tarteel-home .hero__image { left: 40%; } .tarteel-home .programme-grid { gap: 18px; }
 }
-@media (max-width: 980px) {
-  .site-header { height: 72px; } .header__inner { justify-content: space-between; }
-  .btn--apply { margin-left: auto; margin-right: 15px; }
-  .menu-toggle { display: block; order: 3; }
-  .primary-nav { position: absolute; z-index: 20; top: 117px; right: 0; left: 0; display: none; height: auto; padding: 18px 24px; align-items: stretch; background: #fff; box-shadow: 0 10px 20px rgba(0,0,0,.16); }
-  .primary-nav.open { display: flex; flex-direction: column; gap: 0; }
-  .primary-nav a { height: auto; padding: 11px 0; font-size: 14px; } .primary-nav a.active::after { display: none; }
-  .hero { height: 520px; } .hero__inner { grid-template-columns: 55% 45%; } .hero__copy { padding-top: 74px; } .hero__image { left: 35%; opacity: .78; }
-  .faculty-grid { grid-template-columns: repeat(3, 1fr); gap: 24px 14px; } .faculties { padding-bottom: 40px; }
-  .purpose__content { padding: 30px 38px; flex-direction: column; gap: 12px; } .purpose__panel--mission .purpose__content { padding: 30px 38px; } .purpose__ornament { display: none; }
-  .programme-grid { grid-template-columns: repeat(2, 1fr); } .programme-card__image { height: 160px; }
-  .stats { grid-template-columns: repeat(5, minmax(0,1fr)); padding-inline: 7px; } .stat { flex-direction: column; gap: 4px; text-align: center; } .stat__icon { font-size: 27px; } .stat strong { font-size: 22px; } .stat small { white-space: normal; }
-  .cta h2 { font-size: 22px; }
-  .footer-grid { grid-template-columns: repeat(3, 1fr); } .footer-brand { grid-row: span 2; }
+@media (max-width: 980px){
+  .tarteel-home .site-header { height: 72px; } .tarteel-home .header__inner { justify-content: space-between; }
+  .tarteel-home .btn--apply { margin-left: auto; margin-right: 15px; }
+  .tarteel-home .menu-toggle { display: block; order: 3; }
+  .tarteel-home .primary-nav { position: absolute; z-index: 20; top: 117px; right: 0; left: 0; display: none; height: auto; padding: 18px 24px; align-items: stretch; background: #fff; box-shadow: 0 10px 20px rgba(0,0,0,.16); }
+  .tarteel-home .primary-nav.open { display: flex; flex-direction: column; gap: 0; }
+  .tarteel-home .primary-nav a { height: auto; padding: 11px 0; font-size: 14px; } .tarteel-home .primary-nav a.active::after { display: none; }
+  .tarteel-home .hero { height: 520px; } .tarteel-home .hero__inner { grid-template-columns: 55% 45%; } .tarteel-home .hero__copy { padding-top: 74px; } .tarteel-home .hero__image { left: 35%; opacity: .78; }
+  .tarteel-home .faculty-grid { grid-template-columns: repeat(3, 1fr); gap: 24px 14px; } .tarteel-home .faculties { padding-bottom: 40px; }
+  .tarteel-home .purpose__content { padding: 30px 38px; flex-direction: column; gap: 12px; } .tarteel-home .purpose__panel--mission .purpose__content { padding: 30px 38px; } .tarteel-home .purpose__ornament { display: none; }
+  .tarteel-home .programme-grid { grid-template-columns: repeat(2, 1fr); } .tarteel-home .programme-card__image { height: 160px; }
+  .tarteel-home .stats { grid-template-columns: repeat(5, minmax(0,1fr)); padding-inline: 7px; } .tarteel-home .stat { flex-direction: column; gap: 4px; text-align: center; } .tarteel-home .stat__icon { font-size: 27px; } .tarteel-home .stat strong { font-size: 22px; } .tarteel-home .stat small { white-space: normal; }
+  .tarteel-home .cta h2 { font-size: 22px; }
+  .tarteel-home .footer-grid { grid-template-columns: repeat(3, 1fr); } .tarteel-home .footer-brand { grid-row: span 2; }
 }
-@media (max-width: 900px) {
-  .cta-inner { padding-right: 24px; grid-template-columns: 1fr; text-align: center; }
-  .cta-button-wrap { justify-content: center; }
-  .cta-arch { display: none; }
+@media (max-width: 900px){
+  .tarteel-home .cta-inner { padding-right: 24px; grid-template-columns: 1fr; text-align: center; }
+  .tarteel-home .cta-button-wrap { justify-content: center; }
+  .tarteel-home .cta-arch { display: none; }
 }
-@media (max-width: 680px) {
-  .topbar { height: auto; min-height: 42px; padding: 7px 0; } .topbar__contact { gap: 8px; flex-direction: column; align-items: flex-start; } .topbar__links { gap: 9px; } .topbar__links > a:first-child { display: none; }
-  .site-header { height: 72px; } .primary-nav { top: 114px; } .btn--apply { min-height: 39px; padding: 0 11px; font-size: 11px; }
-  .hero { height: 650px; } .hero__inner { display: block; } .hero__copy { padding-top: 65px; } .hero__copy::after { inset: 0 -24px 0 -24px; background: linear-gradient(180deg,rgba(0,21,47,.98) 0%,rgba(0,21,47,.82) 74%,rgba(0,21,47,.15)); }
-  .hero__image { inset: 200px -150px 0 -160px; background-position: center; opacity: .58; } .hero h1 { font-size: 37px; } .hero__lead { font-size: 14px; } .hero__actions { flex-wrap: wrap; }
-  .faculties { border-radius: 50% 50% 0 0 / 22px 22px 0 0; } .section-heading h2 { font-size: 23px; }
-  .faculty-grid { grid-template-columns: 1fr; gap: 26px; } .faculty-card { max-width: 340px; width: 100%; margin: auto; }
-  .purpose { grid-template-columns: 1fr; } .purpose__panel--vision { border-radius: 0 38px 38px 0; } .purpose__panel--mission .purpose__content { padding-top: 38px; padding-bottom: 38px; }
-  .programmes { padding-top: 28px; } .programmes__heading .btn { position: static; margin: 15px auto 0; } .programmes__heading { text-align: center; }
-  .programme-grid { grid-template-columns: 1fr; } .programme-card { max-width: 390px; width: 100%; margin: auto; } .programme-card__image { height: 185px; }
-  .stats { grid-template-columns: 1fr; padding: 8px 25px; } .stat { min-height: 82px; flex-direction: row; justify-content: flex-start; border-right: 0; border-bottom: 1px solid rgba(218,154,37,.33); text-align: left; } .stat__icon { width: 50px; font-size: 34px; }
-  .cta-section { padding-top: 18px; } .cta { min-height: 360px; } .cta-inner { min-height: 360px; } .cta__image { width: 100%; min-height: 130px; background-image: linear-gradient(180deg,transparent 40%,var(--navy)),url("/wp-content/uploads/tarteel-academy/assets/images/cta-mosque-reference.png"); } .cta__copy { padding: 24px 20px 10px; align-items: center; } .cta-button { margin: 12px 0 26px; }
-  .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 18px; } .footer-brand { grid-column: 1 / -1; grid-row: auto; padding-bottom: 18px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.2); }
-  .footer-bottom { padding: 12px 0; gap: 8px; flex-direction: column; } .back-to-top { right: 16px; bottom: 68px; }
+@media (max-width: 700px){
+  .tarteel-home .involvement-modal { padding: 12px; }
+  .tarteel-home .involvement-modal__dialog { padding: 44px 18px 20px; border-radius: 18px; }
+  .tarteel-home .involvement-options { grid-template-columns: 1fr; }
+  .tarteel-home .involvement-option { min-height: auto; }
+  .tarteel-home .involvement-modal__heading h2 { font-size: 30px; }
 }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; } }
+@media (max-width: 680px){
+  .tarteel-home .topbar { height: auto; min-height: 42px; padding: 7px 0; } .tarteel-home .topbar__contact { gap: 8px; flex-direction: column; align-items: flex-start; } .tarteel-home .topbar__links { gap: 9px; } .tarteel-home .topbar__links > a:first-child { display: none; }
+  .tarteel-home .site-header { height: 72px; } .tarteel-home .primary-nav { top: 114px; } .tarteel-home .btn--apply { min-height: 39px; padding: 0 11px; font-size: 11px; }
+  .tarteel-home .hero { height: 650px; } .tarteel-home .hero__inner { display: block; } .tarteel-home .hero__copy { padding-top: 65px; } .tarteel-home .hero__copy::after { inset: 0 -24px 0 -24px; background: linear-gradient(180deg,rgba(0,21,47,.98) 0%,rgba(0,21,47,.82) 74%,rgba(0,21,47,.15)); }
+  .tarteel-home .hero__image { inset: 200px -150px 0 -160px; background-position: center; opacity: .58; } .tarteel-home .hero h1 { font-size: 37px; } .tarteel-home .hero__lead { font-size: 14px; } .tarteel-home .hero__actions { flex-wrap: wrap; }
+  .tarteel-home .faculties { border-radius: 50% 50% 0 0 / 22px 22px 0 0; } .tarteel-home .section-heading h2 { font-size: 23px; }
+  .tarteel-home .faculty-grid { grid-template-columns: 1fr; gap: 26px; } .tarteel-home .faculty-card { max-width: 340px; width: 100%; margin: auto; }
+  .tarteel-home .faculty-modal { padding: 14px; } .tarteel-home .faculty-modal__dialog { max-height: calc(100vh - 28px); padding: 28px 22px 26px; border-radius: 14px; } .tarteel-home .faculty-modal h2 { margin: 0 30px 18px; font-size: 22px; } .tarteel-home .faculty-modal__content { font-size: 13px; } .tarteel-home .faculty-modal__action { width: 100%; }
+  .tarteel-home .purpose { grid-template-columns: 1fr; } .tarteel-home .purpose__panel--vision { border-radius: 0 38px 38px 0; } .tarteel-home .purpose__panel--mission .purpose__content { padding-top: 38px; padding-bottom: 38px; }
+  .tarteel-home .programmes { padding-top: 28px; } .tarteel-home .programmes__heading .btn { position: static; margin: 15px auto 0; } .tarteel-home .programmes__heading { text-align: center; }
+  .tarteel-home .programme-grid { grid-template-columns: 1fr; } .tarteel-home .programme-card { max-width: 390px; width: 100%; margin: auto; } .tarteel-home .programme-card__image { height: 185px; }
+  .tarteel-home .stats { grid-template-columns: 1fr; padding: 8px 25px; } .tarteel-home .stat { min-height: 82px; flex-direction: row; justify-content: flex-start; border-right: 0; border-bottom: 1px solid rgba(218,154,37,.33); text-align: left; } .tarteel-home .stat__icon { width: 50px; font-size: 34px; }
+  .tarteel-home .cta-section { padding-top: 18px; } .tarteel-home .cta { min-height: 360px; } .tarteel-home .cta-inner { min-height: 360px; } .tarteel-home .cta__image { width: 100%; min-height: 130px; background-image: linear-gradient(180deg,transparent 40%,var(--navy)),url("/wp-content/uploads/tarteel-academy/assets/images/cta-mosque-reference.png"); } .tarteel-home .cta__copy { padding: 24px 20px 10px; align-items: center; } .tarteel-home .cta-button { margin: 12px 0 26px; }
+  .tarteel-home .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 18px; } .tarteel-home .footer-brand { grid-column: 1 / -1; grid-row: auto; padding-bottom: 18px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.2); }
+  .tarteel-home .footer-bottom { padding: 12px 0; gap: 8px; flex-direction: column; } .tarteel-home .back-to-top { right: 16px; bottom: 68px; }
+}
+@media (prefers-reduced-motion: reduce){ .tarteel-home { scroll-behavior: auto; } .tarteel-home *, .tarteel-home *::before, .tarteel-home *::after { transition-duration: .01ms !important; } }

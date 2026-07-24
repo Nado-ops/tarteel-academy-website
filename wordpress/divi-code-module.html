@@ -1,8 +1,308 @@
-<!--
-  Tarteel Academy homepage for a full-width Divi Code Module.
-  Upload /assets to /wp-content/uploads/tarteel-academy/assets/
-  and add wordpress/custom-css.css in Divi Theme Options first.
--->
+<style>
+/*
+ * Tarteel Academy Divi custom CSS.
+ * Paste into Divi > Theme Options > Custom CSS.
+ * Asset URLs assume the supplied assets folder is uploaded to:
+ * /wp-content/uploads/tarteel-academy/assets/
+ */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap");
+
+.tarteel-home {
+  --navy: #031d3d;
+  --navy-deep: #00152f;
+  --gold: #d99a25;
+  --gold-light: #e8ae3c;
+  --ivory: #fbf8f2;
+  --white: #fff;
+  --ink: #071634;
+  --muted: #51545a;
+  --green: #217146;
+  --purple: #552978;
+  --orange: #d96518;
+  --pink: #ad2054;
+  --font-body: "DM Sans", Arial, sans-serif;
+  --font-display: "Libre Baskerville", Georgia, serif;
+  --container: 1180px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 28px;
+  --shadow-card: 0 6px 18px rgba(27, 31, 39, .11);
+}
+
+.tarteel-home * { box-sizing: border-box; }
+.tarteel-home { overflow-x: hidden; scroll-behavior: smooth; }
+.tarteel-home { overflow-x: hidden; margin: 0; color: var(--ink); background: var(--ivory); font-family: var(--font-body); font-size: 15px; line-height: 1.5; }
+.tarteel-home img { display: block; max-width: 100%; }
+.tarteel-home a { color: inherit; text-decoration: none; }
+.tarteel-home button, .tarteel-home a { -webkit-tap-highlight-color: transparent; }
+.tarteel-home a:focus-visible, .tarteel-home button:focus-visible { outline: 3px solid #f4bd50; outline-offset: 3px; }
+.tarteel-home .container { width: calc(100% - 40px); max-width: var(--container); margin-left: auto; margin-right: auto; }
+.tarteel-home .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.tarteel-home .skip-link { position: fixed; z-index: 1000; top: 8px; left: 8px; padding: 10px 14px; background: #fff; color: var(--navy); transform: translateY(-150%); }
+.tarteel-home .skip-link:focus { transform: none; }
+.tarteel-home .eyebrow { margin: 0 0 8px; color: var(--gold); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .02em; }
+.tarteel-home .btn { display: inline-flex; min-height: 48px; padding: 0 20px; align-items: center; justify-content: center; gap: 18px; border: 1px solid transparent; border-radius: var(--radius-sm); font-size: 13px; font-weight: 500; transition: transform .2s, box-shadow .2s, background .2s; }
+.tarteel-home .btn:hover { transform: translateY(-2px); box-shadow: 0 7px 16px rgba(0,0,0,.18); }
+.tarteel-home .btn--gold { background: linear-gradient(135deg, var(--gold-light), #c98813); color: #fff; }
+.tarteel-home .btn--navy { min-height: 42px; background: var(--navy); color: #fff; }
+.tarteel-home .btn--outline { border-color: var(--gold); color: #fff; }
+
+.tarteel-home .topbar { height: 45px; background: var(--navy-deep); color: #fff; font-size: 12px; }
+.tarteel-home .topbar__inner, .tarteel-home .topbar__contact, .tarteel-home .topbar__links { display: flex; height: 100%; align-items: center; }
+.tarteel-home .topbar__inner { justify-content: space-between; }
+.tarteel-home .topbar__contact, .tarteel-home .topbar__links { gap: 20px; }
+.tarteel-home .topbar__contact span { color: var(--gold); font-size: 9px; margin-right: 7px; }
+.tarteel-home .topbar__links { gap: 14px; }
+.tarteel-home .topbar__links i { display: block; height: 19px; width: 1px; background: rgba(255,255,255,.35); }
+.tarteel-home .topbar a:hover { color: var(--gold-light); }
+
+.tarteel-home .site-header { height: 72px; background: #fff; border-bottom: 1px solid #e5e2dd; }
+.tarteel-home .header__inner { display: flex; height: 100%; align-items: center; }
+.tarteel-home .site-brand { display: inline-flex; flex-shrink: 0; align-items: center; gap: 12px; text-decoration: none; }
+.tarteel-home .site-brand-mark { display: block; width: 52px; height: 52px; background: transparent; object-fit: contain; }
+.tarteel-home .site-brand-text { display: flex; flex-direction: column; justify-content: center; color: #071d3f; line-height: 1; }
+.tarteel-home .site-brand-text strong { display: inline-block; padding-bottom: 4px; border-bottom: 2px solid #d99a1b; color: #071d3f; font-family: Georgia, "Times New Roman", serif; font-size: 20px; line-height: .88; letter-spacing: .4px; }
+.tarteel-home .site-brand-text small { margin-top: 5px; font-size: 8px; line-height: 1.2; white-space: nowrap; }
+.tarteel-home .primary-nav { display: flex; flex: 1; height: 100%; align-items: center; justify-content: flex-end; gap: clamp(18px, 2.2vw, 35px); }
+.tarteel-home .primary-nav a { position: relative; display: flex; height: 100%; align-items: center; white-space: nowrap; font-size: 13px; font-weight: 500; }
+.tarteel-home .primary-nav a:hover { color: var(--gold); }
+.tarteel-home .primary-nav a.active::after { position: absolute; bottom: 26px; left: 0; width: 42px; height: 2px; background: var(--gold); content: ""; }
+.tarteel-home .btn--apply { min-height: 49px; margin-left: 24px; border-color: var(--gold); color: #b6720b; }
+.tarteel-home .menu-toggle { display: none; padding: 7px; border: 0; background: transparent; }
+.tarteel-home .menu-toggle span:not(.sr-only) { display: block; width: 25px; height: 2px; margin: 5px; background: var(--navy); }
+
+.tarteel-home .hero { position: relative; height: 492px; overflow: hidden; background-color: var(--navy-deep); background-image: url("/wp-content/uploads/tarteel-academy/assets/patterns/navy-geometric.svg"); background-repeat: no-repeat; background-position: center; background-size: 160px 160px; color: #fff; }
+.tarteel-home .hero__inner { position: relative; display: grid; height: 100%; grid-template-columns: 49% 51%; }
+.tarteel-home .hero__copy { position: relative; z-index: 2; padding: 86px 0 40px 2px; }
+.tarteel-home .hero__copy::after { position: absolute; z-index: -1; inset: 0 -190px 0 -100vw; background: linear-gradient(90deg, rgba(0,21,47,.98) 70%, rgba(0,21,47,0)); content: ""; }
+.tarteel-home .hero h1 { margin: 0 0 18px; font: 700 clamp(38px, 3.45vw, 56px)/1.16 var(--font-display); letter-spacing: -.035em; }
+.tarteel-home .hero__lead { max-width: 590px; margin: 0 0 28px; font-size: 15px; line-height: 1.6; }
+.tarteel-home .hero__actions { display: flex; gap: 18px; }
+.tarteel-home .hero__image { position: absolute; top: 0; right: calc((var(--container) - 100vw) / 2); bottom: 0; left: 44%; overflow: hidden; background-image: url("/wp-content/uploads/tarteel-academy/assets/images/hero-learners-clean.png"); background-repeat: no-repeat; background-position: center; background-size: cover; }
+
+.tarteel-home .faculties { position: relative; z-index: 3; overflow: visible; min-height: 448px; margin-top: -24px; padding: 66px 0 31px; border-top: 3px solid var(--gold); border-radius: 58% 58% 0 0 / 36px 36px 0 0; background-color: #fffdfa; background-image: linear-gradient(rgba(255,255,255,.87),rgba(255,255,255,.87)), url("/wp-content/uploads/tarteel-academy/assets/patterns/ivory-geometric.svg"); background-repeat: no-repeat; background-position: center; background-size: 160px 160px; }
+.tarteel-home .section-ornament { position: absolute; z-index: 20; top: -47px; left: 50%; width: 90px; height: auto; transform: translateX(-50%); pointer-events: none; }
+.tarteel-home .section-ornament img { display: block; width: 100%; height: auto; }
+.tarteel-home .section-heading { text-align: center; }
+.tarteel-home .section-heading h2 { margin: 0; font: 700 27px/1.25 var(--font-display); }
+.tarteel-home .heading-mark { display: block; color: var(--gold); font-size: 18px; }
+.tarteel-home .heading-mark::before, .tarteel-home .heading-mark::after { display: inline-block; width: 52px; height: 1px; margin: 0 8px 4px; background: var(--gold); content: ""; }
+.tarteel-home .faculty-grid { display: grid; margin-top: 7px; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.tarteel-home .faculty-card { min-height: 278px; padding: 0 16px 15px; border: 1px solid #e3d7c8; border-radius: 11px; background: rgba(255,255,255,.88); box-shadow: var(--shadow-card); text-align: center; transition: transform .2s, box-shadow .2s; }
+.tarteel-home .faculty-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(27,31,39,.16); }
+.tarteel-home .faculty-card img { width: 129px; height: 103px; margin: -18px auto 6px; object-fit: contain; }
+.tarteel-home .faculty-card h3 { min-height: 48px; margin: 0; font: 700 17px/1.2 var(--font-display); }
+.tarteel-home .faculty-card p { min-height: 58px; margin: 8px 0 10px; color: #222; font-size: 12.5px; line-height: 1.35; }
+.tarteel-home .faculty-card a { display: flex; justify-content: center; gap: 18px; font-size: 12px; font-weight: 700; }
+.tarteel-home .faculty-card--quran a { color: var(--navy); } .tarteel-home .faculty-card--hifdh a { color: var(--green); } .tarteel-home .faculty-card--skills a { color: var(--purple); } .tarteel-home .faculty-card--social a { color: var(--orange); } .tarteel-home .faculty-card--female a { color: var(--pink); }
+
+.tarteel-home.modal-open { overflow: hidden; }
+.tarteel-home .faculty-modal { position: fixed; z-index: 1000; inset: 0; display: grid; visibility: hidden; padding: 24px; place-items: center; opacity: 0; transition: opacity .22s ease, visibility .22s ease; }
+.tarteel-home .faculty-modal.is-open { visibility: visible; opacity: 1; }
+.tarteel-home .faculty-modal__backdrop { position: absolute; inset: 0; background: rgba(0, 14, 34, .72); backdrop-filter: blur(3px); }
+.tarteel-home .faculty-modal__dialog { position: relative; width: min(100%, 670px); max-height: calc(100vh - 48px); overflow-y: auto; padding: 34px 42px 38px; border-radius: 18px; background: #fff; box-shadow: 0 24px 70px rgba(0, 15, 36, .3); transform: scale(.96) translateY(10px); transition: transform .22s ease; scrollbar-gutter: stable; }
+.tarteel-home .faculty-modal.is-open .faculty-modal__dialog { transform: scale(1) translateY(0); }
+.tarteel-home .faculty-modal__close { position: absolute; top: 14px; right: 16px; display: grid; width: 38px; height: 38px; padding: 0; place-items: center; border: 0; border-radius: 50%; background: #f2eee7; color: var(--navy); font: 400 27px/1 var(--font-body); cursor: pointer; }
+.tarteel-home .faculty-modal__close:hover { background: #e8dfd2; }
+.tarteel-home .faculty-modal__icon { width: 105px; height: 84px; margin: 0 auto 8px; object-fit: contain; }
+.tarteel-home .faculty-modal__trim { width: 52px; height: 3px; margin: 0 auto 14px; border-radius: 3px; background: var(--modal-accent, var(--gold)); }
+.tarteel-home .faculty-modal h2 { margin: 0 40px 20px; color: var(--navy); font: 700 26px/1.25 var(--font-display); text-align: center; }
+.tarteel-home .faculty-modal__content { color: #30343a; font-size: 14px; line-height: 1.65; }
+.tarteel-home .faculty-modal__content p { margin: 0 0 15px; }
+.tarteel-home .faculty-modal__content h3 { margin: 22px 0 8px; color: var(--navy); font: 700 17px/1.3 var(--font-display); }
+.tarteel-home .faculty-modal__action { display: inline-flex; min-height: 46px; margin-top: 8px; padding: 0 20px; align-items: center; justify-content: center; border-radius: 8px; background: var(--modal-accent, var(--navy)); color: #fff; font-size: 13px; font-weight: 700; transition: filter .2s, transform .2s; }
+.tarteel-home .faculty-modal__action:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
+.tarteel-home .involvement-modal { position: fixed; z-index: 99999; inset: 0; display: grid; visibility: hidden; padding: 24px; place-items: center; opacity: 0; pointer-events: none; transition: opacity .25s ease, visibility .25s ease; }
+.tarteel-home .involvement-modal.is-open { visibility: visible; opacity: 1; pointer-events: auto; }
+.tarteel-home .involvement-modal__backdrop { position: absolute; inset: 0; background: rgba(2, 20, 48, .86); backdrop-filter: blur(7px); }
+.tarteel-home .involvement-modal__dialog { position: relative; z-index: 2; width: min(840px, 100%); max-height: calc(100vh - 40px); overflow-y: auto; padding: 42px 54px 36px; border: 1px solid #d99a1b; border-radius: 22px; background: linear-gradient(rgba(255, 250, 242, .96), rgba(255, 250, 242, .96)), url("/wp-content/uploads/tarteel-academy/assets/patterns/ivory-islamic-pattern.png"); background-size: auto, 260px; background-repeat: no-repeat, repeat; background-position: center, center; box-shadow: 0 24px 70px rgba(2, 20, 48, .35); transform: scale(.97) translateY(10px); transition: transform .25s ease; }
+.tarteel-home .involvement-modal.is-open .involvement-modal__dialog { transform: scale(1) translateY(0); }
+.tarteel-home .involvement-modal__close { position: absolute; top: 18px; right: 18px; width: 44px; height: 44px; padding: 0; border: 1px solid #d9dee7; border-radius: 50%; background: #fff; color: #071d3f; box-shadow: 0 6px 18px rgba(7, 29, 63, .08); font-size: 28px; line-height: 1; cursor: pointer; }
+.tarteel-home .involvement-modal__heading { max-width: 650px; margin: 0 auto 28px; text-align: center; }
+.tarteel-home .involvement-modal__motif { display: grid; width: 54px; height: 54px; margin: 0 auto 12px; place-items: center; color: #d99a1b; font-size: 34px; }
+.tarteel-home .involvement-modal__heading .section-kicker { display: inline-flex; align-items: center; gap: 12px; color: #b77a08; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; }
+.tarteel-home .involvement-modal__heading .section-kicker::before, .tarteel-home .involvement-modal__heading .section-kicker::after { width: 36px; height: 1px; background: #d99a1b; content: ""; }
+.tarteel-home .involvement-modal__heading h2 { margin: 10px 0; color: #071d3f; font-family: "Libre Baskerville", Georgia, serif; font-size: clamp(32px, 4vw, 44px); line-height: 1.1; }
+.tarteel-home .involvement-modal__heading p { max-width: 600px; margin: 0 auto; color: #4d5563; font-size: 16px; line-height: 1.6; }
+.tarteel-home .involvement-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.tarteel-home .involvement-option { display: flex; min-height: 330px; padding: 28px 22px 20px; flex-direction: column; align-items: center; border: 1px solid rgba(217, 154, 27, .45); border-radius: 18px; background: rgba(255, 255, 255, .88); box-shadow: 0 10px 26px rgba(7, 29, 63, .08); text-align: center; }
+.tarteel-home .involvement-option h3 { margin: 16px 0 12px; color: #071d3f; font-family: "Libre Baskerville", Georgia, serif; font-size: 26px; line-height: 1.2; }
+.tarteel-home .involvement-option p { flex: 1; max-width: 310px; margin: 0 auto 22px; color: #3f4754; font-size: 15px; line-height: 1.65; }
+.tarteel-home .involvement-option__icon { display: grid; width: 84px; height: 84px; place-items: center; border-radius: 50%; background: #071d3f; color: #d99a1b; box-shadow: 0 8px 20px rgba(7, 29, 63, .18); font-size: 34px; }
+.tarteel-home .involvement-option .button { display: inline-flex; width: 100%; min-height: 50px; padding: 0 20px; align-items: center; justify-content: center; gap: 12px; border-radius: 8px; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; }
+.tarteel-home .involvement-option .button--gold { background: linear-gradient(135deg, var(--gold-light), #c98813); }
+.tarteel-home .involvement-option .button--navy { background: var(--navy); }
+
+.tarteel-home .purpose { position: relative; display: grid; overflow: hidden; min-height: 250px; grid-template-columns: 1fr 1fr; background: var(--ivory); }
+.tarteel-home .purpose__panel { display: flex; overflow: hidden; align-items: center; background-repeat: no-repeat; background-position: center; background-size: auto; }
+.tarteel-home .purpose__panel--vision { justify-content: flex-end; border: 2px solid var(--gold); border-left: 0; border-radius: 0 48px 48px 0; background-color: var(--navy-deep); background-image: url("/wp-content/uploads/tarteel-academy/assets/patterns/navy-geometric.svg"); background-size: 160px 160px; color: #fff; }
+.tarteel-home .purpose__panel--mission { background-color: var(--ivory); background-image: url("/wp-content/uploads/tarteel-academy/assets/patterns/ivory-geometric.svg"); background-size: 160px 160px; }
+.tarteel-home .purpose__content { display: flex; width: min(100%, 620px); padding: 30px 70px 30px 48px; gap: 24px; }
+.tarteel-home .purpose__panel--mission .purpose__content { padding-left: 72px; padding-right: 48px; }
+.tarteel-home .purpose__icon { display: grid; flex: 0 0 58px; height: 58px; place-items: center; border: 1px solid var(--gold); border-radius: 50%; color: var(--gold); font-size: 27px; }
+.tarteel-home .purpose__panel--mission .purpose__icon { border: 0; background: linear-gradient(135deg, #e4bc60, #c58a12); color: #fff; }
+.tarteel-home .purpose h2 { margin: 0 0 8px; font: 400 26px/1.2 var(--font-display); }
+.tarteel-home .purpose p { margin: 0; font-size: 12px; line-height: 1.52; }
+.tarteel-home .purpose__ornament { position: absolute; z-index: 2; top: 50%; left: 50%; width: 69px; transform: translate(-50%,-50%); filter: drop-shadow(0 2px 3px rgba(0,0,0,.15)); }
+
+.tarteel-home .programmes { padding: 19px 0 14px; background: #fffcf7; }
+.tarteel-home .programmes__heading { position: relative; margin-bottom: 15px; }
+.tarteel-home .programmes__heading .btn { position: absolute; right: 0; bottom: 0; }
+.tarteel-home .programme-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 31px; }
+.tarteel-home .programme-card { overflow: hidden; min-height: 256px; border: 1px solid #e3ddd4; border-radius: 10px; background: #fff; box-shadow: var(--shadow-card); transition: transform .2s; }
+.tarteel-home .programme-card:hover { transform: translateY(-4px); }
+.tarteel-home .programme-card__image { position: relative; height: 127px; }
+.tarteel-home .programme-card__image img { width: 100%; height: 100%; object-fit: cover; }
+.tarteel-home .programme-card__badge { position: absolute; bottom: -23px; left: 50%; display: grid; width: 49px; height: 49px; transform: translateX(-50%); place-items: center; border: 2px solid #e4b348; border-radius: 50%; background: var(--navy); color: #fff; font-size: 21px; }
+.tarteel-home .programme-card__badge--green { background: var(--green); } .tarteel-home .programme-card__badge--orange { background: var(--orange); } .tarteel-home .programme-card__badge--pink { background: var(--pink); }
+.tarteel-home .programme-card__body { padding: 28px 18px 10px; text-align: center; }
+.tarteel-home .programme-card h3 { margin: 0 0 8px; font: 400 17px/1.25 var(--font-display); }
+.tarteel-home .programme-card p { min-height: 38px; margin: 0; font-size: 11.5px; line-height: 1.45; }
+.tarteel-home .programme-card a { display: block; margin-top: 8px; font-size: 11px; }
+.tarteel-home .programme-card a span { margin-left: 7px; color: var(--gold); }
+.tarteel-home .stats { display: grid; min-height: 112px; margin-top: 16px; padding: 13px 22px; grid-template-columns: repeat(5, 1fr); border-radius: 19px; background: var(--navy-deep); color: #fff; box-shadow: 0 4px 10px rgba(0,0,0,.16); }
+.tarteel-home .stat { display: flex; align-items: center; justify-content: center; gap: 14px; border-right: 1px solid rgba(218,154,37,.33); }
+.tarteel-home .stat:last-child { border: 0; }
+.tarteel-home .stat__icon { color: var(--gold); font-size: 36px; line-height: 1; }
+.tarteel-home .stat strong { display: block; color: var(--gold-light); font: 400 26px/1.05 var(--font-display); }
+.tarteel-home .stat small { display: block; margin-top: 4px; white-space: nowrap; font-size: 10px; }
+
+.tarteel-home .cta-section { margin: 0; padding: 0; background: #fffcf7; }
+.tarteel-home .cta { min-height: 190px; padding: 0; border: 2px solid var(--gold); border-bottom: 0; border-radius: 18px 18px 0 0; background-color: var(--navy); background-image: linear-gradient(rgba(3,29,61,.87),rgba(3,29,61,.87)), url("/wp-content/uploads/tarteel-academy/assets/patterns/navy-geometric.svg"); background-repeat: no-repeat; background-position: center; background-size: 160px 160px; color: #fff; }
+.tarteel-home .cta-banner { position: relative; overflow: hidden; }
+.tarteel-home .cta-inner { position: relative; z-index: 2; display: grid; min-height: 190px; padding-right: 96px; grid-template-columns: 32% 1fr 220px; align-items: center; gap: 28px; }
+.tarteel-home .cta__image { position: relative; z-index: 1; width: 100%; min-height: 190px; background-image: linear-gradient(90deg, transparent 62%, var(--navy)), url("/wp-content/uploads/tarteel-academy/assets/images/cta-mosque-reference.png"); background-repeat: no-repeat; background-position: center; background-size: cover; border-radius: 17px 0 0 0; }
+.tarteel-home .cta__copy { position: relative; z-index: 1; display: flex; padding: 24px 28px; flex-direction: column; align-items: flex-start; justify-content: center; }
+.tarteel-home .cta h2 { margin: 0 0 6px; font: 400 26px/1.25 var(--font-display); }
+.tarteel-home .cta p { margin: 0; }
+.tarteel-home .cta-button-wrap { position: relative; z-index: 4; display: flex; align-items: center; justify-content: flex-end; }
+.tarteel-home .cta-button { position: relative; top: auto; right: auto; min-width: 190px; margin: 0; white-space: nowrap; }
+.tarteel-home .cta-arch { position: absolute; z-index: 1; right: 18px; bottom: 0; width: 64px; height: 96px; border: 4px solid var(--gold); border-bottom: 0; border-radius: 48px 48px 0 0; background-color: var(--navy-deep); background-image: url("/wp-content/uploads/tarteel-academy/assets/patterns/ivory-geometric.svg"); background-repeat: repeat; background-position: center; background-size: 120px 120px; pointer-events: none; opacity: .9; }
+.tarteel-home .cta-arch img, .tarteel-home .cta-arch svg { display: block; width: 100%; height: 100%; object-fit: contain; }
+
+.tarteel-home .site-footer { position: relative; padding: 22px 0 0; background: var(--navy-deep); color: #fff; }
+.tarteel-home .footer-grid { display: grid; padding-bottom: 20px; grid-template-columns: 1.35fr 1fr 1.1fr .95fr 1.3fr; gap: 37px; }
+.tarteel-home .footer-grid > div:not(:first-child) { padding-left: 8px; }
+.tarteel-home .footer-brand { max-width: 180px; border-right: 1px solid rgba(255,255,255,.2); }
+.tarteel-home .footer-brand img { display: block; width: 130px; max-width: 100%; height: auto; margin-bottom: 18px; object-fit: contain; }
+.tarteel-home .footer-brand svg { width: 130px; height: auto; }
+.tarteel-home .footer-brand p { margin-top: 0; font-size: 13px; line-height: 1.5; }
+.tarteel-home .footer-grid h3 { margin: 0 0 8px; color: var(--gold-light); font-size: 12px; font-weight: 500; }
+.tarteel-home .footer-grid a, .tarteel-home .footer-grid address { display: block; margin: 4px 0; font-size: 11px; font-style: normal; line-height: 1.35; }
+.tarteel-home .footer-grid a:hover { color: var(--gold); }
+.tarteel-home .footer-bottom { display: flex; min-height: 37px; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,.2); color: #aeb5c1; font-size: 10px; }
+.tarteel-home .footer-bottom p { margin: 0; }
+.tarteel-home .footer-bottom div { display: flex; align-items: center; gap: 11px; }
+.tarteel-home .footer-bottom i { width: 1px; height: 13px; background: rgba(255,255,255,.35); }
+.tarteel-home .back-to-top { position: absolute; right: 28px; bottom: 26px; display: grid; width: 41px; height: 41px; place-items: center; border-radius: 50%; background: var(--gold); color: #fff; }
+
+.tarteel-home {
+  width: 100vw;
+  max-width: none;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  overflow-x: hidden;
+}
+
+.tarteel-home,
+.tarteel-home > * {
+  margin-top: 0;
+}
+
+.tarteel-home .hero h1,
+.tarteel-home .hero h2,
+.tarteel-home .hero h3,
+.tarteel-home .hero p {
+  color: #ffffff !important;
+}
+
+.tarteel-home .hero .eyebrow {
+  color: #d99a25 !important;
+}
+
+.tarteel-home .hero h1 {
+  margin: 0 0 18px !important;
+  font-family: "Libre Baskerville", Georgia, serif !important;
+  font-size: clamp(38px, 3.45vw, 56px) !important;
+  font-weight: 700 !important;
+  line-height: 1.16 !important;
+  letter-spacing: -0.035em !important;
+}
+
+.tarteel-home h1,
+.tarteel-home h2,
+.tarteel-home h3,
+.tarteel-home h4 {
+  padding-bottom: 0;
+}
+
+.tarteel-home .site-header,
+.tarteel-home .topbar {
+  width: 100%;
+}
+
+.tarteel-home .header__inner {
+  min-height: 72px;
+}
+
+.tarteel-home .container {
+  width: calc(100% - 40px);
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 1180px){
+  .tarteel-home .primary-nav { gap: 15px; } .tarteel-home .primary-nav a { font-size: 11px; } .tarteel-home .brand { flex-basis: 185px; } .tarteel-home .btn--apply { margin-left: 15px; }
+  .tarteel-home .hero__image { left: 40%; } .tarteel-home .programme-grid { gap: 18px; }
+}
+@media (max-width: 980px){
+  .tarteel-home .site-header { height: 72px; } .tarteel-home .header__inner { justify-content: space-between; }
+  .tarteel-home .btn--apply { margin-left: auto; margin-right: 15px; }
+  .tarteel-home .menu-toggle { display: block; order: 3; }
+  .tarteel-home .primary-nav { position: absolute; z-index: 20; top: 117px; right: 0; left: 0; display: none; height: auto; padding: 18px 24px; align-items: stretch; background: #fff; box-shadow: 0 10px 20px rgba(0,0,0,.16); }
+  .tarteel-home .primary-nav.open { display: flex; flex-direction: column; gap: 0; }
+  .tarteel-home .primary-nav a { height: auto; padding: 11px 0; font-size: 14px; } .tarteel-home .primary-nav a.active::after { display: none; }
+  .tarteel-home .hero { height: 520px; } .tarteel-home .hero__inner { grid-template-columns: 55% 45%; } .tarteel-home .hero__copy { padding-top: 74px; } .tarteel-home .hero__image { left: 35%; opacity: .78; }
+  .tarteel-home .faculty-grid { grid-template-columns: repeat(3, 1fr); gap: 24px 14px; } .tarteel-home .faculties { padding-bottom: 40px; }
+  .tarteel-home .purpose__content { padding: 30px 38px; flex-direction: column; gap: 12px; } .tarteel-home .purpose__panel--mission .purpose__content { padding: 30px 38px; } .tarteel-home .purpose__ornament { display: none; }
+  .tarteel-home .programme-grid { grid-template-columns: repeat(2, 1fr); } .tarteel-home .programme-card__image { height: 160px; }
+  .tarteel-home .stats { grid-template-columns: repeat(5, minmax(0,1fr)); padding-inline: 7px; } .tarteel-home .stat { flex-direction: column; gap: 4px; text-align: center; } .tarteel-home .stat__icon { font-size: 27px; } .tarteel-home .stat strong { font-size: 22px; } .tarteel-home .stat small { white-space: normal; }
+  .tarteel-home .cta h2 { font-size: 22px; }
+  .tarteel-home .footer-grid { grid-template-columns: repeat(3, 1fr); } .tarteel-home .footer-brand { grid-row: span 2; }
+}
+@media (max-width: 900px){
+  .tarteel-home .cta-inner { padding-right: 24px; grid-template-columns: 1fr; text-align: center; }
+  .tarteel-home .cta-button-wrap { justify-content: center; }
+  .tarteel-home .cta-arch { display: none; }
+}
+@media (max-width: 700px){
+  .tarteel-home .involvement-modal { padding: 12px; }
+  .tarteel-home .involvement-modal__dialog { padding: 44px 18px 20px; border-radius: 18px; }
+  .tarteel-home .involvement-options { grid-template-columns: 1fr; }
+  .tarteel-home .involvement-option { min-height: auto; }
+  .tarteel-home .involvement-modal__heading h2 { font-size: 30px; }
+}
+@media (max-width: 680px){
+  .tarteel-home .topbar { height: auto; min-height: 42px; padding: 7px 0; } .tarteel-home .topbar__contact { gap: 8px; flex-direction: column; align-items: flex-start; } .tarteel-home .topbar__links { gap: 9px; } .tarteel-home .topbar__links > a:first-child { display: none; }
+  .tarteel-home .site-header { height: 72px; } .tarteel-home .primary-nav { top: 114px; } .tarteel-home .btn--apply { min-height: 39px; padding: 0 11px; font-size: 11px; }
+  .tarteel-home .hero { height: 650px; } .tarteel-home .hero__inner { display: block; } .tarteel-home .hero__copy { padding-top: 65px; } .tarteel-home .hero__copy::after { inset: 0 -24px 0 -24px; background: linear-gradient(180deg,rgba(0,21,47,.98) 0%,rgba(0,21,47,.82) 74%,rgba(0,21,47,.15)); }
+  .tarteel-home .hero__image { inset: 200px -150px 0 -160px; background-position: center; opacity: .58; } .tarteel-home .hero h1 { font-size: 37px; } .tarteel-home .hero__lead { font-size: 14px; } .tarteel-home .hero__actions { flex-wrap: wrap; }
+  .tarteel-home .faculties { border-radius: 50% 50% 0 0 / 22px 22px 0 0; } .tarteel-home .section-heading h2 { font-size: 23px; }
+  .tarteel-home .faculty-grid { grid-template-columns: 1fr; gap: 26px; } .tarteel-home .faculty-card { max-width: 340px; width: 100%; margin: auto; }
+  .tarteel-home .faculty-modal { padding: 14px; } .tarteel-home .faculty-modal__dialog { max-height: calc(100vh - 28px); padding: 28px 22px 26px; border-radius: 14px; } .tarteel-home .faculty-modal h2 { margin: 0 30px 18px; font-size: 22px; } .tarteel-home .faculty-modal__content { font-size: 13px; } .tarteel-home .faculty-modal__action { width: 100%; }
+  .tarteel-home .purpose { grid-template-columns: 1fr; } .tarteel-home .purpose__panel--vision { border-radius: 0 38px 38px 0; } .tarteel-home .purpose__panel--mission .purpose__content { padding-top: 38px; padding-bottom: 38px; }
+  .tarteel-home .programmes { padding-top: 28px; } .tarteel-home .programmes__heading .btn { position: static; margin: 15px auto 0; } .tarteel-home .programmes__heading { text-align: center; }
+  .tarteel-home .programme-grid { grid-template-columns: 1fr; } .tarteel-home .programme-card { max-width: 390px; width: 100%; margin: auto; } .tarteel-home .programme-card__image { height: 185px; }
+  .tarteel-home .stats { grid-template-columns: 1fr; padding: 8px 25px; } .tarteel-home .stat { min-height: 82px; flex-direction: row; justify-content: flex-start; border-right: 0; border-bottom: 1px solid rgba(218,154,37,.33); text-align: left; } .tarteel-home .stat__icon { width: 50px; font-size: 34px; }
+  .tarteel-home .cta-section { padding-top: 18px; } .tarteel-home .cta { min-height: 360px; } .tarteel-home .cta-inner { min-height: 360px; } .tarteel-home .cta__image { width: 100%; min-height: 130px; background-image: linear-gradient(180deg,transparent 40%,var(--navy)),url("/wp-content/uploads/tarteel-academy/assets/images/cta-mosque-reference.png"); } .tarteel-home .cta__copy { padding: 24px 20px 10px; align-items: center; } .tarteel-home .cta-button { margin: 12px 0 26px; }
+  .tarteel-home .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 18px; } .tarteel-home .footer-brand { grid-column: 1 / -1; grid-row: auto; padding-bottom: 18px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.2); }
+  .tarteel-home .footer-bottom { padding: 12px 0; gap: 8px; flex-direction: column; } .tarteel-home .back-to-top { right: 16px; bottom: 68px; }
+}
+@media (prefers-reduced-motion: reduce){ .tarteel-home { scroll-behavior: auto; } .tarteel-home *, .tarteel-home *::before, .tarteel-home *::after { transition-duration: .01ms !important; } }
+</style>
+<div class="tarteel-home">
   <a class="skip-link" href="#main-content">Skip to content</a>
   <div class="topbar">
     <div class="container topbar__inner">
@@ -11,7 +311,7 @@
         <a href="mailto:info@tarteel.co.za"><span aria-hidden="true">✉</span> info@tarteel.co.za</a>
       </div>
       <div class="topbar__links">
-        <a href="#" aria-label="Open LMS Portal">LMS Portal</a><i></i>
+        <a href="https://www.lms.tarteel.co.za/login/index.php" target="_blank" rel="noopener noreferrer" aria-label="Open LMS Portal">LMS Portal</a><i></i>
         <a href="#" aria-label="Tarteel Academy on Facebook">f</a>
         <a href="#" aria-label="Tarteel Academy on Instagram">◎</a>
         <a href="#" aria-label="Tarteel Academy on YouTube">▶</a>
@@ -36,7 +336,7 @@
       <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation">
         <a class="active" href="#home">Home</a><a href="#about">About</a><a href="#faculties">Faculties <span aria-hidden="true">⌄</span></a>
         <a href="#programmes">Programmes &amp; Activities</a><a href="#resources">Media &amp; Resources <span aria-hidden="true">⌄</span></a>
-        <a href="#get-involved">Get Involved</a><a href="#contact">Contact</a>
+        <a href="#get-involved" data-open-involvement>Get Involved</a><a href="#contact">Contact</a>
       </nav>
       <a class="btn btn--apply" href="#apply">Apply Now <span aria-hidden="true">♟</span></a>
     </div>
@@ -49,7 +349,7 @@
           <p class="eyebrow">Welcome to Tarteel Academy</p>
           <h1>Empowering Hearts.<br>Transforming Lives.</h1>
           <p class="hero__lead">A centre of holistic education and development nurturing faith, knowledge, skills and community impact for a better tomorrow.</p>
-          <div class="hero__actions"><a class="btn btn--gold" href="#faculties">Discover Our Faculties <span>→</span></a><a class="btn btn--outline" href="#get-involved">Get Involved <span>→</span></a></div>
+          <div class="hero__actions"><a class="btn btn--gold" href="#faculties">Discover Our Faculties <span>→</span></a><a class="btn btn--outline" href="#get-involved" data-open-involvement>Get Involved <span>→</span></a></div>
         </div>
         <div class="hero__image" role="img" aria-label="Young learners reading the Qur'an in a mosque"></div>
       </div>
@@ -62,14 +362,26 @@
       <div class="container">
         <div class="section-heading"><p class="eyebrow">Our Faculties</p><h2>Our Faculties of Knowledge &amp; Empowerment</h2><span class="heading-mark">◇</span></div>
         <div class="faculty-grid">
-          <article class="faculty-card faculty-card--quran"><img src="/wp-content/uploads/tarteel-academy/assets/icons/faculty-quran.png" alt=""><h3>Madrasah<br>Tarteelul Qur’an</h3><p>Preserving the Qur’an<br>for every generation.</p><a href="#">Learn More <span>→</span></a></article>
-          <article class="faculty-card faculty-card--hifdh"><img src="/wp-content/uploads/tarteel-academy/assets/icons/faculty-hifdh.png" alt=""><h3>Hifdh &amp;<br>Makatib</h3><p>Building strong foundations in<br>faith and character.</p><a href="#">Learn More <span>→</span></a></article>
-          <article class="faculty-card faculty-card--skills"><img src="/wp-content/uploads/tarteel-academy/assets/icons/faculty-skills.png" alt=""><h3>School &amp; Skills<br>Development</h3><p>Education and skills<br>for a brighter future.</p><a href="#">Learn More <span>→</span></a></article>
-          <article class="faculty-card faculty-card--social"><img src="/wp-content/uploads/tarteel-academy/assets/icons/faculty-social.png" alt=""><h3>Social<br>Development</h3><p>Serving communities.<br>Creating lasting impact.</p><a href="#">Learn More <span>→</span></a></article>
-          <article class="faculty-card faculty-card--female"><img src="/wp-content/uploads/tarteel-academy/assets/icons/faculty-female.png" alt=""><h3>Female<br>Empowerment</h3><p>Empowering women.<br>Building stronger families.</p><a href="#">Learn More <span>→</span></a></article>
+          <article class="faculty-card faculty-card--quran"><img src="/wp-content/uploads/tarteel-academy/assets/icons/faculty-quran.png" alt=""><h3>Madrasah<br>Tarteelul Qur’an</h3><p>Preserving the Qur’an<br>for every generation.</p><a class="faculty-modal-trigger" href="#faculty-modal" data-faculty="quran" aria-haspopup="dialog">Learn More <span>→</span></a></article>
+          <article class="faculty-card faculty-card--hifdh"><img src="/wp-content/uploads/tarteel-academy/assets/icons/faculty-hifdh.png" alt=""><h3>Hifdh &amp;<br>Makatib</h3><p>Building strong foundations in<br>faith and character.</p><a class="faculty-modal-trigger" href="#faculty-modal" data-faculty="hifdh" aria-haspopup="dialog">Learn More <span>→</span></a></article>
+          <article class="faculty-card faculty-card--skills"><img src="/wp-content/uploads/tarteel-academy/assets/icons/faculty-skills.png" alt=""><h3>School &amp; Skills<br>Development</h3><p>Education and skills<br>for a brighter future.</p><a class="faculty-modal-trigger" href="#faculty-modal" data-faculty="skills" aria-haspopup="dialog">Learn More <span>→</span></a></article>
+          <article class="faculty-card faculty-card--social"><img src="/wp-content/uploads/tarteel-academy/assets/icons/faculty-social.png" alt=""><h3>Social<br>Development</h3><p>Serving communities.<br>Creating lasting impact.</p><a class="faculty-modal-trigger" href="#faculty-modal" data-faculty="social" aria-haspopup="dialog">Learn More <span>→</span></a></article>
+          <article class="faculty-card faculty-card--female"><img src="/wp-content/uploads/tarteel-academy/assets/icons/faculty-female.png" alt=""><h3>Female<br>Empowerment</h3><p>Empowering women.<br>Building stronger families.</p><a class="faculty-modal-trigger" href="#faculty-modal" data-faculty="female" aria-haspopup="dialog">Learn More <span>→</span></a></article>
         </div>
       </div>
     </section>
+
+    <div id="faculty-modal" class="faculty-modal" data-asset-base="/wp-content/uploads/tarteel-academy/assets" aria-hidden="true">
+      <div class="faculty-modal__backdrop" data-modal-close></div>
+      <div class="faculty-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="faculty-modal-title" tabindex="-1">
+        <button class="faculty-modal__close" type="button" data-modal-close aria-label="Close faculty information">×</button>
+        <img class="faculty-modal__icon" src="" alt="">
+        <div class="faculty-modal__trim" aria-hidden="true"></div>
+        <h2 id="faculty-modal-title"></h2>
+        <div class="faculty-modal__content"></div>
+        <a class="faculty-modal__action" href="#programmes"></a>
+      </div>
+    </div>
 
     <section id="about" class="purpose">
       <div class="purpose__panel purpose__panel--vision">
@@ -105,7 +417,7 @@
         <div class="cta-inner">
           <div class="cta__image" role="img" aria-label="Mosque silhouettes at sunset"></div>
           <div class="cta__copy"><h2>Be Part of Something Greater</h2><p>Support our mission and help build a brighter tomorrow.</p></div>
-          <div class="cta-button-wrap"><a class="btn btn--gold cta-button" href="#">Get Involved Today <span>→</span></a></div>
+          <div class="cta-button-wrap"><a class="btn btn--gold cta-button" href="#" data-open-involvement>Get Involved Today <span>→</span></a></div>
         </div>
         <span class="cta__arch cta-arch" aria-hidden="true"></span>
       </div>
@@ -115,14 +427,296 @@
   <footer id="contact" class="site-footer">
     <div class="container footer-grid">
       <div class="footer-brand"><img src="/wp-content/uploads/tarteel-academy/assets/images/tarteel-white-logo.png" alt="Tarteel Academy"><p>Nurturing Faith.<br>Building Futures.</p></div>
-      <div><h3>Quick Links</h3><a href="#about">About Us</a><a href="#faculties">Faculties</a><a href="#programmes">Programmes &amp; Activities</a><a href="#resources">Media &amp; Resources</a><a href="#get-involved">Get Involved</a><a href="#contact">Contact Us</a></div>
+      <div><h3>Quick Links</h3><a href="#about">About Us</a><a href="#faculties">Faculties</a><a href="#programmes">Programmes &amp; Activities</a><a href="#resources">Media &amp; Resources</a><a href="#get-involved" data-open-involvement>Get Involved</a><a href="#contact">Contact Us</a></div>
       <div><h3>Faculties</h3><a href="#">Madrasah Tarteelul Qur’an</a><a href="#">Hifdh &amp; Makatib</a><a href="#">School &amp; Skills Development</a><a href="#">Social Development</a><a href="#">Female Empowerment</a></div>
-      <div id="resources"><h3>Resources</h3><a href="#">News &amp; Updates</a><a href="#">Gallery</a><a href="#">Downloads</a><a href="#">Events</a><a href="#">LMS Portal</a></div>
+      <div id="resources"><h3>Resources</h3><a href="#">News &amp; Updates</a><a href="#">Gallery</a><a href="#">Downloads</a><a href="#">Events</a><a href="https://www.lms.tarteel.co.za/login/index.php" target="_blank" rel="noopener noreferrer">LMS Portal</a></div>
       <div><h3>Contact Us</h3><a href="tel:+27333872519">⌕ &nbsp; 033 387 2519</a><a href="mailto:info@tarteel.co.za">✉ &nbsp; info@tarteel.co.za</a><address>⌾ &nbsp; 123 Tarteel Avenue<br>&nbsp;&nbsp;&nbsp;&nbsp;Pietermaritzburg, 3201<br>&nbsp;&nbsp;&nbsp;&nbsp;South Africa</address></div>
     </div>
     <div class="container footer-bottom"><p>© 2025 Tarteel Academy. All Rights Reserved.</p><div><a href="#">Privacy Policy</a><i></i><a href="#">Terms of Use</a></div></div>
     <a class="back-to-top" href="#home" aria-label="Back to top">↑</a>
   </footer>
-  <script>
-(function(){const b=document.querySelector(".menu-toggle"),n=document.querySelector(".primary-nav");if(!b||!n)return;b.addEventListener("click",()=>{const o=n.classList.toggle("open");b.setAttribute("aria-expanded",String(o))});n.addEventListener("click",e=>{if(e.target.closest("a")){n.classList.remove("open");b.setAttribute("aria-expanded","false")}})})();
+  <div class="involvement-modal" id="involvementModal" aria-hidden="true">
+    <div class="involvement-modal__backdrop" data-close-involvement></div>
+    <div class="involvement-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="involvementModalTitle" tabindex="-1">
+      <button type="button" class="involvement-modal__close" aria-label="Close Get Involved popup" data-close-involvement>×</button>
+      <div class="involvement-modal__heading">
+        <div class="involvement-modal__motif" aria-hidden="true">✦</div>
+        <span class="section-kicker">Get Involved</span>
+        <h2 id="involvementModalTitle">Get Involved with Tarteel</h2>
+        <p>Choose how you would like to support, participate in or become part of the Tarteel Academy community.</p>
+      </div>
+      <div class="involvement-options">
+        <article class="involvement-option involvement-option--donate">
+          <div class="involvement-option__icon" aria-hidden="true">♡</div>
+          <h3>Donate to Tarteel</h3>
+          <p>Support Tarteel Academy’s educational, social development and community programmes through a financial contribution.</p>
+          <a href="#" class="button button--gold">Make a Donation <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="involvement-option involvement-option--join">
+          <div class="involvement-option__icon" aria-hidden="true">✦</div>
+          <h3>Become Part of Tarteel</h3>
+          <p>Join Tarteel as a volunteer, partner, supporter, staff member or community contributor.</p>
+          <a href="#" class="button button--navy">Join Tarteel <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  "use strict";
+  const button = document.querySelector(".menu-toggle");
+  const nav = document.querySelector(".primary-nav");
+  if (!button || !nav) return;
+
+  function closeMenu() {
+    nav.classList.remove("open");
+    button.setAttribute("aria-expanded", "false");
+  }
+
+  button.addEventListener("click", function () {
+    const open = nav.classList.toggle("open");
+    button.setAttribute("aria-expanded", String(open));
+  });
+
+  nav.addEventListener("click", function (event) {
+    if (event.target.closest("a")) closeMenu();
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeMenu();
+      button.focus();
+    }
+  });
+}());
+
+(function () {
+  "use strict";
+
+  const modal = document.querySelector("#involvementModal");
+  if (!modal) return;
+
+  const dialog = modal.querySelector(".involvement-modal__dialog");
+  const closeButton = modal.querySelector(".involvement-modal__close");
+  let previousFocus = null;
+
+  function syncScrollLock() {
+    const anotherModalOpen = document.querySelector(".faculty-modal.is-open, .involvement-modal.is-open");
+    document.querySelector(".tarteel-home").classList.toggle("modal-open", Boolean(anotherModalOpen));
+  }
+
+  function openModal(trigger) {
+    previousFocus = trigger;
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    syncScrollLock();
+    window.requestAnimationFrame(function () { closeButton.focus(); });
+  }
+
+  function closeModal() {
+    if (!modal.classList.contains("is-open")) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    syncScrollLock();
+    if (previousFocus) previousFocus.focus();
+  }
+
+  document.addEventListener("click", function (event) {
+    const trigger = event.target.closest("[data-open-involvement]");
+    if (trigger) {
+      event.preventDefault();
+      openModal(trigger);
+      return;
+    }
+    if (event.target.closest("[data-close-involvement]")) closeModal();
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (!modal.classList.contains("is-open")) return;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeModal();
+      return;
+    }
+    if (event.key !== "Tab") return;
+    const focusable = Array.from(dialog.querySelectorAll("button, a[href], [tabindex]:not([tabindex='-1'])"))
+      .filter(function (element) { return !element.disabled; });
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+}());
+
+(function () {
+  "use strict";
+
+  const faculties = {
+    quran: {
+      title: "Madrasah Tarteelul Qur’an",
+      icon: "/wp-content/uploads/tarteel-academy/assets/icons/faculty-quran.png",
+      accent: "#031d3d",
+      button: "Explore Madrasah Programmes",
+      paragraphs: [
+        "The memorisation of the Noble Qur’an is a sacred journey that requires dedication, structure and spiritual discipline.",
+        "At Tarteel Academy, our Hifdh programme is committed to upholding the highest standards of Qur’an memorisation. We ensure that students not only commit the Qur’an to heart, but also maintain accuracy, fluency and excellence in their recitation.",
+        "We also extend our expertise to Hifdh institutions and Islamic schools seeking guidance in structuring and managing their own Hifdh programmes."
+      ]
+    },
+    hifdh: {
+      title: "Tarteel Hifdh & Makatib",
+      icon: "/wp-content/uploads/tarteel-academy/assets/icons/faculty-hifdh.png",
+      accent: "#217146",
+      button: "Explore Hifdh & Makatib",
+      paragraphs: [
+        "A Maktab is the foundation of Islamic learning, nurturing young minds through essential Islamic education and moral development.",
+        "At a time when external influences can challenge the identity of young Muslims, we provide a safe and nurturing environment where children learn the fundamentals of Islam.",
+        "Through structured lessons in Qur’an recitation, Islamic morals and basic Fiqh, we aim to instil a love for the Deen from an early age, helping learners grow into practising and responsible Muslims."
+      ]
+    },
+    skills: {
+      title: "School & Skills Development",
+      icon: "/wp-content/uploads/tarteel-academy/assets/icons/faculty-skills.png",
+      accent: "#552978",
+      button: "Explore School & Skills Programmes",
+      sections: [
+        {
+          heading: "Academic Development",
+          paragraphs: [
+            "At Tarteel Academy, we believe that education should empower students both spiritually and intellectually.",
+            "Our academic faculty integrates mainstream schooling with Islamic values, providing a balanced curriculum that nurtures character, knowledge and critical thinking.",
+            "We prepare students for higher education and professional careers while ensuring that they remain firmly rooted in their Islamic identity.",
+            "Through a structured academic programme alongside Islamic studies, we aim to cultivate individuals who can excel in both Deen and Dunya."
+          ]
+        },
+        {
+          heading: "Skills Development",
+          paragraphs: [
+            "Tarteel Skills Development aims to equip learners with the knowledge, confidence and practical abilities needed to succeed in their personal and professional lives.",
+            "Our programmes combine valuable skills training with Islamic values, helping learners develop discipline, independence and a strong sense of purpose.",
+            "Through structured development opportunities, we aim to prepare individuals for further education, employment, entrepreneurship and meaningful participation within their communities."
+          ]
+        }
+      ]
+    },
+    social: {
+      title: "Tarteel Social Development",
+      icon: "/wp-content/uploads/tarteel-academy/assets/icons/faculty-social.png",
+      accent: "#d96518",
+      button: "Explore Social Programmes",
+      paragraphs: [
+        "Islam encourages service to humanity, and our Community Outreach Programme is built upon this important principle.",
+        "We strive to uplift society through structured initiatives, partnerships and service programmes.",
+        "Through da’wah, wellness drives, parent engagement and youth mentorship, we aim to follow the example of our beloved Nabi ﷺ in charity, compassion and leadership.",
+        "Our goal is for the light of the Qur’an to reach every household and every soul within our community."
+      ]
+    },
+    female: {
+      title: "Tarteel Female Empowerment",
+      icon: "/wp-content/uploads/tarteel-academy/assets/icons/faculty-female.png",
+      accent: "#ad2054",
+      button: "Explore Female Programmes",
+      paragraphs: [
+        "The Female Education Faculty at Tarteel Academy is dedicated to empowering women through education and fostering a strong foundation in both Islamic knowledge and essential life skills.",
+        "We recognise the important role women play in shaping communities and future generations.",
+        "By offering Qur’an memorisation, Islamic studies and personal development programmes, we aim to develop confident and knowledgeable women who embody Islamic values while actively contributing to society."
+      ]
+    }
+  };
+
+  const modal = document.querySelector(".faculty-modal");
+  if (!modal) return;
+
+  const assetBase = modal.dataset.assetBase || "assets";
+  const dialog = modal.querySelector(".faculty-modal__dialog");
+  const title = modal.querySelector("#faculty-modal-title");
+  const icon = modal.querySelector(".faculty-modal__icon");
+  const content = modal.querySelector(".faculty-modal__content");
+  const action = modal.querySelector(".faculty-modal__action");
+  const closeButton = modal.querySelector(".faculty-modal__close");
+  let previousFocus = null;
+
+  function paragraphMarkup(paragraphs) {
+    return paragraphs.map(function (paragraph) {
+      const node = document.createElement("p");
+      node.textContent = paragraph;
+      return node.outerHTML;
+    }).join("");
+  }
+
+  function renderContent(faculty) {
+    if (faculty.sections) {
+      return faculty.sections.map(function (section) {
+        const heading = document.createElement("h3");
+        heading.textContent = section.heading;
+        return heading.outerHTML + paragraphMarkup(section.paragraphs);
+      }).join("");
+    }
+    return paragraphMarkup(faculty.paragraphs);
+  }
+
+  function openModal(key, trigger) {
+    const faculty = faculties[key];
+    if (!faculty) return;
+    previousFocus = trigger;
+    title.textContent = faculty.title;
+    icon.src = faculty.icon;
+    icon.alt = "";
+    content.innerHTML = renderContent(faculty);
+    action.textContent = faculty.button;
+    modal.style.setProperty("--modal-accent", faculty.accent);
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.querySelector(".tarteel-home").classList.add("modal-open");
+    window.requestAnimationFrame(function () { closeButton.focus(); });
+  }
+
+  function closeModal() {
+    if (!modal.classList.contains("is-open")) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.querySelector(".tarteel-home").classList.remove("modal-open");
+    if (previousFocus) previousFocus.focus();
+  }
+
+  document.addEventListener("click", function (event) {
+    const trigger = event.target.closest(".faculty-modal-trigger");
+    if (trigger) {
+      event.preventDefault();
+      openModal(trigger.dataset.faculty, trigger);
+      return;
+    }
+    if (event.target.closest("[data-modal-close]")) closeModal();
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (!modal.classList.contains("is-open")) return;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeModal();
+      return;
+    }
+    if (event.key !== "Tab") return;
+    const focusable = Array.from(dialog.querySelectorAll("button, a[href], [tabindex]:not([tabindex='-1'])"))
+      .filter(function (element) { return !element.disabled; });
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+}());
+
 </script>
