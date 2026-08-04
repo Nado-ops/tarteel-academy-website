@@ -3,7 +3,10 @@ const STORE_BASES = [
   "https://shop.tarteel.co.za"
 ];
 
-const PRODUCT_PATH = "/wp-json/wc/store/v1/products?per_page=100&orderby=menu_order&order=asc";
+const PRODUCT_PATHS = [
+  "/wp-json/wc/store/v1/products?per_page=100&orderby=menu_order&order=asc",
+  "/wp-json/wc/store/v1/products?per_page=100"
+];
 
 function jsonResponse(body, status, extraHeaders = {}) {
   return new Response(JSON.stringify(body), {
@@ -23,36 +26,45 @@ async function fetchCatalogue() {
   let lastError = "WooCommerce catalogue unavailable";
 
   for (const base of STORE_BASES) {
-    try {
-      const upstream = await fetch(base + PRODUCT_PATH, {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          "user-agent": "Tarteel-Academy-Store-Proxy/1.0"
-        },
-        cf: {
-          cacheEverything: true,
-          cacheTtl: 300
+    for (const productPath of PRODUCT_PATHS) {
+      try {
+        const upstream = await fetch(base + productPath, {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            "user-agent": "Tarteel-Academy-Store-Proxy/1.0"
+          },
+          cf: {
+            cacheEverything: true,
+            cacheTtl: 300
+          }
+        });
+
+        if (!upstream.ok) {
+          lastError = `WooCommerce returned ${upstream.status}`;
+          continue;
         }
-      });
 
-      if (!upstream.ok) {
-        lastError = `WooCommerce returned ${upstream.status}`;
-        continue;
+        const payload = await upstream.json();
+        const products = Array.isArray(payload)
+          ? payload
+          : (Array.isArray(payload && payload.products) ? payload.products : null);
+
+        if (!products) {
+          const code = payload && typeof payload === "object" ? payload.code : null;
+          lastError = code
+            ? `WooCommerce returned ${code}`
+            : "WooCommerce returned an unexpected response";
+          continue;
+        }
+
+        return jsonResponse({
+          store_base: base,
+          products
+        }, 200);
+      } catch (error) {
+        lastError = error instanceof Error ? error.message : String(error);
       }
-
-      const products = await upstream.json();
-      if (!Array.isArray(products)) {
-        lastError = "WooCommerce returned an unexpected response";
-        continue;
-      }
-
-      return jsonResponse({
-        store_base: base,
-        products
-      }, 200);
-    } catch (error) {
-      lastError = error instanceof Error ? error.message : String(error);
     }
   }
 
