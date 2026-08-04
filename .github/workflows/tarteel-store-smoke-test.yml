@@ -41,19 +41,21 @@ jobs:
         run: |
           cp worker.js /tmp/worker.mjs
           node --input-type=module <<'NODE'
-          globalThis.fetch = async () => new Response(JSON.stringify([
-            {
-              id: 1,
-              name: "Donate",
-              slug: "donate",
-              prices: {
-                price: "5000",
-                currency_code: "ZAR",
-                currency_minor_unit: 2
-              },
-              categories: []
-            }
-          ]), {
+          globalThis.fetch = async () => new Response(JSON.stringify({
+            products: [
+              {
+                id: 1,
+                name: "Donate",
+                slug: "donate",
+                prices: {
+                  price: "5000",
+                  currency_code: "ZAR",
+                  currency_minor_unit: 2
+                },
+                categories: []
+              }
+            ]
+          }), {
             status: 200,
             headers: { "content-type": "application/json" }
           });
@@ -104,7 +106,7 @@ jobs:
           done
 
           if [ -z "${selected}" ]; then
-            echo "No WooCommerce Store API endpoint returned a valid JSON catalogue."
+            echo "No WooCommerce Store API endpoint returned valid JSON."
             exit 1
           fi
 
@@ -114,9 +116,20 @@ jobs:
           import json
           from pathlib import Path
 
-          products = json.loads(Path('products.json').read_text())
-          if not isinstance(products, list):
-              raise SystemExit('Catalogue response is not a product array')
+          payload = json.loads(Path('products.json').read_text())
+          if isinstance(payload, list):
+              products = payload
+          elif isinstance(payload, dict) and isinstance(payload.get('products'), list):
+              products = payload['products']
+          else:
+              keys = sorted(payload.keys()) if isinstance(payload, dict) else []
+              raise SystemExit(
+                  f'Catalogue response does not contain a product array. '
+                  f'Type={type(payload).__name__}; keys={keys}'
+              )
+
+          if not all(isinstance(product, dict) for product in products):
+              raise SystemExit('Catalogue contains a non-object product entry')
 
           terms = (
               'donate', 'donation', 'sponsor', 'sponsorship', 'contribution',
@@ -128,6 +141,7 @@ jobs:
               categories = ' '.join(
                   f"{item.get('name', '')} {item.get('slug', '')}"
                   for item in product.get('categories', []) or []
+                  if isinstance(item, dict)
               )
               return ' '.join(str(product.get(key, '')) for key in (
                   'name', 'slug', 'short_description', 'description'
