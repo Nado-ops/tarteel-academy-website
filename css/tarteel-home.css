@@ -69,7 +69,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid #f4bd50; outline-offs
 .hero h1 { margin: 0 0 18px; font: 700 clamp(38px, 3.45vw, 56px)/1.16 var(--font-display); letter-spacing: -.035em; }
 .hero__lead { max-width: 590px; margin: 0 0 28px; font-size: 15px; line-height: 1.6; }
 .hero__actions { display: flex; gap: 18px; }
-.hero__image { position: absolute; top: 0; right: calc((var(--container) - 100vw) / 2); bottom: 0; left: 44%; overflow: hidden; background-image: url("../assets/images/hero-learners-clean.png"); background-repeat: no-repeat; background-position: center; background-size: cover; }
+.hero__image { position: absolute; top: 0; right: calc((var(--container) - 100vw) / 2); bottom: 0; left: 44%; overflow: hidden; background-image: url("../assets/images/hero-quran-learning-v2.png"); background-repeat: no-repeat; background-position: center; background-size: cover; }
 
 .faculties { position: relative; z-index: 3; overflow: visible; min-height: 448px; margin-top: -24px; padding: 66px 0 31px; border-top: 3px solid var(--gold); border-radius: 58% 58% 0 0 / 36px 36px 0 0; background-color: #fffdfa; background-image: linear-gradient(rgba(255,255,255,.87),rgba(255,255,255,.87)), url("../assets/patterns/ivory-geometric.svg"); background-repeat: no-repeat; background-position: center; background-size: 160px 160px; }
 .section-ornament { position: absolute; z-index: 20; top: -47px; left: 50%; width: 90px; height: auto; transform: translateX(-50%); pointer-events: none; }
