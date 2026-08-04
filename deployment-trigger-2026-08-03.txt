@@ -1,3 +1,5 @@
 Cloudflare automatic deployment trigger after reconnecting the GitHub repository on 2026-08-03.
 
 Production redeployment requested on 2026-08-04 at 14:57 SAST to publish the approved modest photography update from main.
+
+Production redeployment requested on 2026-08-04 at 21:14 SAST to publish the merged Tarteel Store and Donations modal, including the donation-button handoff and WooCommerce catalogue proxy.
