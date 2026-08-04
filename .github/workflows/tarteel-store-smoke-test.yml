@@ -1,0 +1,132 @@
+name: Tarteel Store Smoke Test
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "js/tarteel-store-modal.js"
+      - "index.html"
+      - ".github/workflows/tarteel-store-smoke-test.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+
+      - name: Validate JavaScript syntax
+        run: node --check js/tarteel-store-modal.js
+
+      - name: Confirm page integration
+        run: |
+          grep -q 'js/tarteel-store-modal.js' index.html
+          grep -q 'data-open-store' js/tarteel-store-modal.js
+          grep -q 'data-store-tab="donations"' js/tarteel-store-modal.js
+
+      - name: Test live WooCommerce catalogue and pages
+        env:
+          ORIGIN: https://www.tarteel.co.za
+        run: |
+          set -euo pipefail
+
+          bases=(
+            "https://www.shop.tarteel.co.za"
+            "https://shop.tarteel.co.za"
+          )
+
+          selected=""
+          for base in "${bases[@]}"; do
+            echo "Testing catalogue endpoint: ${base}"
+            rm -f products.json headers.txt
+            status=$(curl --silent --show-error --location \
+              --connect-timeout 15 --max-time 40 \
+              --header "Accept: application/json" \
+              --header "Origin: ${ORIGIN}" \
+              --dump-header headers.txt \
+              --output products.json \
+              --write-out '%{http_code}' \
+              "${base}/wp-json/wc/store/v1/products?per_page=100&orderby=menu_order&order=asc" || true)
+
+            echo "HTTP status: ${status}"
+            sed -n '/^HTTP\//p;/^access-control-allow-origin:/Ip;/^content-type:/Ip;/^location:/Ip' headers.txt || true
+
+            if [ "${status}" = "200" ] && python3 -m json.tool products.json >/dev/null 2>&1; then
+              selected="${base}"
+              break
+            fi
+          done
+
+          if [ -z "${selected}" ]; then
+            echo "No WooCommerce Store API endpoint returned a valid JSON catalogue."
+            exit 1
+          fi
+
+          echo "Selected store base: ${selected}"
+
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          products = json.loads(Path('products.json').read_text())
+          if not isinstance(products, list):
+              raise SystemExit('Catalogue response is not a product array')
+
+          terms = (
+              'donate', 'donation', 'sponsor', 'sponsorship', 'contribution',
+              'contribute', 'zakaat', 'zakat', 'sadaqah', 'sadaqa',
+              'lillah', 'waqf', 'charity'
+          )
+
+          def text(product):
+              categories = ' '.join(
+                  f"{item.get('name', '')} {item.get('slug', '')}"
+                  for item in product.get('categories', []) or []
+              )
+              return ' '.join(str(product.get(key, '')) for key in (
+                  'name', 'slug', 'short_description', 'description'
+              )).lower() + ' ' + categories.lower()
+
+          donations = [p for p in products if any(term in text(p) for term in terms)]
+          shop = [p for p in products if p not in donations]
+
+          print(f'Total public products: {len(products)}')
+          print(f'Donation products: {len(donations)}')
+          print(f'Shop products: {len(shop)}')
+          print('Donation matches:', [p.get('name') for p in donations])
+
+          if not products:
+              raise SystemExit('The Store API is reachable but the public catalogue is empty')
+          if not any('donate' in str(p.get('name', '')).lower() for p in donations):
+              raise SystemExit('The visible Donate product was not classified under Donations')
+          PY
+
+          cors=$(awk 'BEGIN{IGNORECASE=1} /^access-control-allow-origin:/ {gsub("\r", ""); print $2}' headers.txt | tail -n 1)
+          echo "CORS allow-origin: ${cors:-missing}"
+          if [ -z "${cors}" ]; then
+            echo "The WooCommerce API response does not include Access-Control-Allow-Origin."
+            exit 1
+          fi
+          if [ "${cors}" != "*" ] && [ "${cors}" != "${ORIGIN}" ]; then
+            echo "The WooCommerce API does not allow the main Tarteel website origin."
+            exit 1
+          fi
+
+          for path in /shop/ /cart/ /checkout/; do
+            status=$(curl --silent --show-error --location \
+              --connect-timeout 15 --max-time 40 \
+              --output /dev/null --write-out '%{http_code}' \
+              "${selected}${path}" || true)
+            echo "${path} -> ${status}"
+            case "${status}" in
+              200|301|302|303|307|308) ;;
+              *) echo "Unexpected status for ${path}"; exit 1 ;;
+            esac
+          done
+
+          echo "Live WooCommerce smoke test passed."
