@@ -1,5 +1,6 @@
 .git
 .github
 wrangler.jsonc
+worker.js
 deployment-trigger-2026-08-03.txt
 README.md

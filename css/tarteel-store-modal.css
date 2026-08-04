@@ -1,0 +1,469 @@
+/* Tarteel WooCommerce product and donation modal */
+.involvement-store-cta {
+  display: flex;
+  margin-top: 22px;
+  justify-content: center;
+}
+
+.involvement-store-cta .button--store {
+  display: inline-flex;
+  min-height: 52px;
+  padding: 0 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 1px solid #d99a1b;
+  border-radius: 9px;
+  background: #071d3f;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  cursor: pointer;
+}
+
+.involvement-store-cta .button--store:hover {
+  background: #0d2a56;
+  transform: translateY(-1px);
+}
+
+.store-modal {
+  position: fixed;
+  z-index: 100100;
+  inset: 0;
+  display: grid;
+  visibility: hidden;
+  padding: 24px;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease, visibility .25s ease;
+}
+
+.store-modal.is-open {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.store-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(1, 13, 31, .86);
+  backdrop-filter: blur(7px);
+}
+
+.store-modal__dialog {
+  position: relative;
+  z-index: 2;
+  width: min(1180px, 100%);
+  max-height: calc(100vh - 42px);
+  overflow: hidden;
+  border: 1px solid #d99a1b;
+  border-radius: 20px;
+  background: #fffaf2;
+  box-shadow: 0 24px 70px rgba(0, 12, 30, .42);
+  transform: scale(.98) translateY(10px);
+  transition: transform .25s ease;
+}
+
+.store-modal.is-open .store-modal__dialog {
+  transform: scale(1) translateY(0);
+}
+
+.store-modal__header {
+  display: flex;
+  min-height: 86px;
+  padding: 17px 22px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background-color: #071d3f;
+  background-image: linear-gradient(rgba(7, 29, 63, .93), rgba(7, 29, 63, .93)), url("../assets/patterns/navy-geometric.svg");
+  background-size: auto, 150px 150px;
+  color: #fff;
+}
+
+.store-modal__brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.store-modal__brand-mark {
+  display: grid;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid #d99a1b;
+  border-radius: 50%;
+  color: #d99a1b;
+  font-size: 23px;
+}
+
+.store-modal__header h2 {
+  margin: 0;
+  font: 700 27px/1.2 "Libre Baskerville", Georgia, serif;
+}
+
+.store-modal__header p {
+  margin: 4px 0 0;
+  color: rgba(255, 255, 255, .72);
+  font-size: 13px;
+}
+
+.store-modal__header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.store-modal__external,
+.store-modal__close {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, .25);
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+}
+
+.store-modal__external {
+  padding: 0 14px;
+  gap: 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.store-modal__close {
+  width: 42px;
+  padding: 0;
+  border-radius: 50%;
+  font: 400 28px/1 Arial, sans-serif;
+  cursor: pointer;
+}
+
+.store-modal__external:hover,
+.store-modal__close:hover {
+  background: rgba(255, 255, 255, .16);
+}
+
+.store-modal__notice {
+  padding: 12px 22px;
+  border-bottom: 1px solid #eadcc8;
+  background: #fff4dd;
+  color: #25324a;
+  font-size: 13px;
+}
+
+.store-modal__tabs {
+  display: flex;
+  padding: 14px 22px 0;
+  gap: 8px;
+  background: #fffaf2;
+}
+
+.store-modal__tab {
+  min-height: 42px;
+  padding: 0 18px;
+  border: 1px solid #d8cbb8;
+  border-radius: 999px;
+  background: #fff;
+  color: #071d3f;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.store-modal__tab:hover,
+.store-modal__tab.is-active {
+  border-color: #d99a1b;
+  background: #071d3f;
+  color: #fff;
+}
+
+.store-modal__tab-count {
+  display: inline-flex;
+  min-width: 21px;
+  height: 21px;
+  margin-left: 6px;
+  padding: 0 6px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(217, 154, 27, .18);
+  color: inherit;
+  font-size: 10px;
+}
+
+.store-modal__body {
+  max-height: calc(100vh - 292px);
+  overflow-y: auto;
+  padding: 18px 22px 24px;
+  scrollbar-gutter: stable;
+}
+
+.store-modal__status {
+  display: flex;
+  min-height: 210px;
+  padding: 28px;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed #d5c5ad;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .75);
+  color: #4d5563;
+  text-align: center;
+}
+
+.store-modal__status[hidden],
+.store-product-grid[hidden] {
+  display: none;
+}
+
+.store-modal__status-inner {
+  max-width: 580px;
+}
+
+.store-modal__status-icon {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 14px;
+  place-items: center;
+  border-radius: 50%;
+  background: #071d3f;
+  color: #d99a1b;
+  font-size: 25px;
+}
+
+.store-modal__status h3 {
+  margin: 0 0 8px;
+  color: #071d3f;
+  font: 700 22px/1.25 "Libre Baskerville", Georgia, serif;
+}
+
+.store-modal__status p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.store-modal__retry {
+  display: inline-flex;
+  min-height: 44px;
+  margin-top: 16px;
+  padding: 0 18px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 8px;
+  background: #071d3f;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.store-product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.store-product-card {
+  display: flex;
+  overflow: hidden;
+  min-width: 0;
+  flex-direction: column;
+  border: 1px solid #e5d9ca;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 7px 20px rgba(7, 29, 63, .08);
+}
+
+.store-product-card__image-link {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  height: 190px;
+  background: #f1eadf;
+}
+
+.store-product-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .25s ease;
+}
+
+.store-product-card:hover .store-product-card__image {
+  transform: scale(1.035);
+}
+
+.store-product-card__placeholder {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  color: #071d3f;
+  font-size: 45px;
+}
+
+.store-product-card__badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: #d99a1b;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.store-product-card__body {
+  display: flex;
+  padding: 16px;
+  flex: 1;
+  flex-direction: column;
+}
+
+.store-product-card h3 {
+  margin: 0 0 7px;
+  color: #071d3f;
+  font: 700 17px/1.3 "Libre Baskerville", Georgia, serif;
+}
+
+.store-product-card__summary {
+  display: -webkit-box;
+  overflow: hidden;
+  min-height: 42px;
+  margin: 0 0 12px;
+  color: #5a606b;
+  font-size: 12.5px;
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.store-product-card__footer {
+  display: flex;
+  margin-top: auto;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.store-product-card__price {
+  color: #071d3f;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.store-product-card__action {
+  display: inline-flex;
+  min-height: 40px;
+  padding: 0 13px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: #071d3f;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.store-product-card__action:hover {
+  background: #d99a1b;
+}
+
+.store-modal__footer {
+  display: flex;
+  min-height: 70px;
+  padding: 13px 22px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border-top: 1px solid #e5d9ca;
+  background: #fffaf2;
+}
+
+.store-modal__footer p {
+  margin: 0;
+  color: #626873;
+  font-size: 12px;
+}
+
+.store-modal__footer-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.store-modal__footer-button {
+  display: inline-flex;
+  min-height: 43px;
+  padding: 0 17px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #071d3f;
+  border-radius: 8px;
+  color: #071d3f;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.store-modal__footer-button--checkout {
+  border-color: #d99a1b;
+  background: #d99a1b;
+  color: #fff;
+}
+
+@media (max-width: 1040px) {
+  .store-product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 780px) {
+  .store-modal { padding: 0; }
+  .store-modal__dialog {
+    width: 100%;
+    max-height: 100vh;
+    min-height: 100vh;
+    border: 0;
+    border-radius: 0;
+  }
+  .store-modal__header { padding: 14px 16px; }
+  .store-modal__brand-mark { display: none; }
+  .store-modal__header h2 { font-size: 22px; }
+  .store-modal__external { display: none; }
+  .store-modal__tabs { padding: 12px 16px 0; }
+  .store-modal__body {
+    max-height: calc(100vh - 270px);
+    padding: 15px 16px 20px;
+  }
+  .store-product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; }
+  .store-product-card__image-link { height: 160px; }
+  .store-modal__footer { padding: 11px 16px; }
+  .store-modal__footer p { display: none; }
+  .store-modal__footer-actions { width: 100%; }
+  .store-modal__footer-button { flex: 1; }
+}
+
+@media (max-width: 520px) {
+  .store-modal__header p { display: none; }
+  .store-modal__notice { padding: 10px 14px; }
+  .store-modal__tab { flex: 1; padding: 0 10px; }
+  .store-product-grid { grid-template-columns: 1fr; }
+  .store-product-card { display: grid; grid-template-columns: 120px 1fr; }
+  .store-product-card__image-link { height: 100%; min-height: 160px; }
+  .store-product-card__body { padding: 14px; }
+  .store-product-card__footer { align-items: stretch; flex-direction: column; }
+  .store-product-card__action { width: 100%; }
+  .store-modal__footer-actions { flex-direction: column; }
+}

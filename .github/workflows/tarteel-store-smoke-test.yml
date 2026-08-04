@@ -1,0 +1,176 @@
+name: Tarteel Store Smoke Test
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "js/tarteel-store-modal.js"
+      - "worker.js"
+      - "wrangler.jsonc"
+      - "index.html"
+      - ".github/workflows/tarteel-store-smoke-test.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+
+      - name: Validate JavaScript syntax
+        run: |
+          node --check js/tarteel-store-modal.js
+          node --input-type=module --check < worker.js
+
+      - name: Confirm page and Worker integration
+        run: |
+          grep -q 'js/tarteel-store-modal.js' index.html
+          grep -q 'data-open-store' js/tarteel-store-modal.js
+          grep -q 'data-store-tab="donations"' js/tarteel-store-modal.js
+          grep -q '"/api/store-products"' js/tarteel-store-modal.js
+          grep -q '"main": "worker.js"' wrangler.jsonc
+          grep -q '"/api/\*"' wrangler.jsonc
+          grep -q '^worker.js$' .assetsignore
+
+      - name: Test Worker catalogue proxy contract
+        run: |
+          cp worker.js /tmp/worker.mjs
+          node --input-type=module <<'NODE'
+          globalThis.fetch = async () => new Response(JSON.stringify({
+            products: [
+              {
+                id: 1,
+                name: "Donate",
+                slug: "donate",
+                prices: {
+                  price: "5000",
+                  currency_code: "ZAR",
+                  currency_minor_unit: 2
+                },
+                categories: []
+              }
+            ]
+          }), {
+            status: 200,
+            headers: { "content-type": "application/json" }
+          });
+
+          const { default: worker } = await import("file:///tmp/worker.mjs");
+          const response = await worker.fetch(
+            new Request("https://www.tarteel.co.za/api/store-products"),
+            { ASSETS: { fetch: async () => new Response("asset") } }
+          );
+          const payload = await response.json();
+
+          if (response.status !== 200) throw new Error(`Unexpected proxy status ${response.status}`);
+          if (!Array.isArray(payload.products)) throw new Error("Proxy did not return a product array");
+          if (payload.products[0]?.name !== "Donate") throw new Error("Proxy product payload changed");
+          if (!String(payload.store_base || "").startsWith("https://")) throw new Error("Proxy did not return store_base");
+
+          console.log("Worker proxy contract passed");
+          NODE
+
+      - name: Test live WooCommerce catalogue and pages
+        run: |
+          set -euo pipefail
+
+          bases=(
+            "https://www.shop.tarteel.co.za"
+            "https://shop.tarteel.co.za"
+          )
+
+          selected=""
+          for base in "${bases[@]}"; do
+            echo "Testing catalogue endpoint: ${base}"
+            rm -f products.json headers.txt
+            status=$(curl --silent --show-error --location \
+              --connect-timeout 15 --max-time 40 \
+              --header "Accept: application/json" \
+              --dump-header headers.txt \
+              --output products.json \
+              --write-out '%{http_code}' \
+              "${base}/wp-json/wc/store/v1/products?per_page=100&orderby=menu_order&order=asc" || true)
+
+            echo "HTTP status: ${status}"
+            sed -n '/^HTTP\//p;/^content-type:/Ip;/^location:/Ip' headers.txt || true
+
+            if [ "${status}" = "200" ] && python3 -m json.tool products.json >/dev/null 2>&1; then
+              selected="${base}"
+              break
+            fi
+          done
+
+          if [ -z "${selected}" ]; then
+            echo "No WooCommerce Store API endpoint returned valid JSON."
+            exit 1
+          fi
+
+          echo "Selected store base: ${selected}"
+
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          payload = json.loads(Path('products.json').read_text())
+          if isinstance(payload, list):
+              products = payload
+          elif isinstance(payload, dict) and isinstance(payload.get('products'), list):
+              products = payload['products']
+          else:
+              keys = sorted(payload.keys()) if isinstance(payload, dict) else []
+              raise SystemExit(
+                  f'Catalogue response does not contain a product array. '
+                  f'Type={type(payload).__name__}; keys={keys}'
+              )
+
+          if not all(isinstance(product, dict) for product in products):
+              raise SystemExit('Catalogue contains a non-object product entry')
+
+          terms = (
+              'donate', 'donation', 'sponsor', 'sponsorship', 'contribution',
+              'contribute', 'zakaat', 'zakat', 'sadaqah', 'sadaqa',
+              'lillah', 'waqf', 'charity'
+          )
+
+          def text(product):
+              categories = ' '.join(
+                  f"{item.get('name', '')} {item.get('slug', '')}"
+                  for item in product.get('categories', []) or []
+                  if isinstance(item, dict)
+              )
+              return ' '.join(str(product.get(key, '')) for key in (
+                  'name', 'slug', 'short_description', 'description'
+              )).lower() + ' ' + categories.lower()
+
+          donations = [p for p in products if any(term in text(p) for term in terms)]
+          shop = [p for p in products if p not in donations]
+
+          print(f'Total public products: {len(products)}')
+          print(f'Donation products: {len(donations)}')
+          print(f'Shop products: {len(shop)}')
+          print('Donation matches:', [p.get('name') for p in donations])
+
+          if not products:
+              raise SystemExit('The Store API is reachable but the public catalogue is empty')
+          if not any('donate' in str(p.get('name', '')).lower() for p in donations):
+              raise SystemExit('The visible Donate product was not classified under Donations')
+          PY
+
+          for path in /shop/ /cart/ /checkout/; do
+            status=$(curl --silent --show-error --location \
+              --connect-timeout 15 --max-time 40 \
+              --output /dev/null --write-out '%{http_code}' \
+              "${selected}${path}" || true)
+            echo "${path} -> ${status}"
+            case "${status}" in
+              200|301|302|303|307|308) ;;
+              *) echo "Unexpected status for ${path}"; exit 1 ;;
+            esac
+          done
+
+          echo "Live WooCommerce smoke test passed."
