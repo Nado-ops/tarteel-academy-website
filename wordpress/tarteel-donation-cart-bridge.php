@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Tarteel Donation Cart Bridge
  * Description: Adds the approved General Donation product to the WooCommerce cart from the Tarteel Academy modal.
- * Version: 1.0.0
+ * Version: 1.1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,37 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 const TARTEEL_DONATION_MIN_AMOUNT = 1.00;
 const TARTEEL_DONATION_MAX_AMOUNT = 100000.00;
+const TARTEEL_DONATION_CONFIRM_TTL = 120;
 
-/**
- * Return the approved Tarteel origins that may open the bridge popup.
- * Add the final production domain here when DNS is connected.
- *
- * @return string[]
- */
 function tarteel_donation_allowed_origins() {
 	return array(
 		'https://super-firefly-660f.itnanotech1.workers.dev',
 	);
 }
 
-/**
- * Validate and normalize the opener origin.
- *
- * @param string $origin Raw origin.
- * @return string
- */
 function tarteel_donation_validate_origin( $origin ) {
 	$origin = untrailingslashit( esc_url_raw( $origin ) );
 	return in_array( $origin, tarteel_donation_allowed_origins(), true ) ? $origin : '';
 }
 
-/**
- * Confirm that the submitted product is the approved General Donation item.
- * This avoids relying on a hard-coded ID that may differ between environments.
- *
- * @param WC_Product $product Product object.
- * @return bool
- */
 function tarteel_donation_is_approved_product( $product ) {
 	if ( ! $product instanceof WC_Product ) {
 		return false;
@@ -54,14 +36,32 @@ function tarteel_donation_is_approved_product( $product ) {
 }
 
 /**
- * Render the small popup response page and securely notify the opener.
+ * Load WooCommerce frontend dependencies and create a real customer session/cart.
+ * admin-post.php is an admin request, so WooCommerce does not always bootstrap
+ * its frontend cart automatically for a brand-new visitor.
  *
- * @param string $status        success|error.
- * @param string $message       Human-readable result.
- * @param string $target_origin Validated Tarteel origin.
- * @param int    $http_status   HTTP status code.
- * @return void
+ * @return bool
  */
+function tarteel_donation_boot_cart() {
+	if ( ! function_exists( 'WC' ) || ! class_exists( 'WooCommerce' ) ) {
+		return false;
+	}
+
+	if ( method_exists( WC(), 'frontend_includes' ) ) {
+		WC()->frontend_includes();
+	}
+
+	if ( function_exists( 'wc_load_cart' ) && ( null === WC()->session || null === WC()->cart ) ) {
+		wc_load_cart();
+	}
+
+	if ( null === WC()->customer && class_exists( 'WC_Customer' ) ) {
+		WC()->customer = new WC_Customer( get_current_user_id(), true );
+	}
+
+	return WC()->session && WC()->cart;
+}
+
 function tarteel_donation_bridge_response( $status, $message, $target_origin, $http_status = 200 ) {
 	$status  = 'success' === $status ? 'success' : 'error';
 	$payload = wp_json_encode(
@@ -71,10 +71,11 @@ function tarteel_donation_bridge_response( $status, $message, $target_origin, $h
 			'message' => $message,
 		)
 	);
-	$origin  = wp_json_encode( $target_origin );
-	$nonce   = wp_generate_password( 24, false, false );
+	$origin = wp_json_encode( $target_origin );
+	$nonce  = str_replace( '-', '', wp_generate_uuid4() );
 
 	status_header( $http_status );
+	nocache_headers();
 	header( 'Content-Type: text/html; charset=' . get_option( 'blog_charset' ) );
 	header( "Content-Security-Policy: default-src 'none'; script-src 'nonce-{$nonce}'; style-src 'unsafe-inline'; base-uri 'none'; frame-ancestors 'none'" );
 	header( 'X-Content-Type-Options: nosniff' );
@@ -96,7 +97,7 @@ function tarteel_donation_bridge_response( $status, $message, $target_origin, $h
 			if (window.opener && targetOrigin) {
 				window.opener.postMessage(payload, targetOrigin);
 			}
-			window.setTimeout(function () { window.close(); }, 350);
+			window.setTimeout(function () { window.close(); }, 900);
 		}());
 		</script>
 	</body>
@@ -106,9 +107,10 @@ function tarteel_donation_bridge_response( $status, $message, $target_origin, $h
 }
 
 /**
- * Handle the cross-site top-level POST from the Tarteel modal.
- *
- * @return void
+ * Add the donation, save the fresh WooCommerce session, then perform a
+ * same-origin confirmation redirect. Following the redirect forces a new
+ * browser to commit and resend the WooCommerce session cookie before the
+ * popup reports success to the Tarteel modal.
  */
 function tarteel_donation_bridge_handle() {
 	$target_origin = isset( $_POST['return_origin'] )
@@ -123,8 +125,8 @@ function tarteel_donation_bridge_handle() {
 		tarteel_donation_bridge_response( 'error', 'This website is not authorised to use the donation bridge.', '', 403 );
 	}
 
-	if ( ! function_exists( 'WC' ) || ! class_exists( 'WooCommerce' ) ) {
-		tarteel_donation_bridge_response( 'error', 'WooCommerce is unavailable.', $target_origin, 503 );
+	if ( ! tarteel_donation_boot_cart() ) {
+		tarteel_donation_bridge_response( 'error', 'The WooCommerce cart could not be started.', $target_origin, 503 );
 	}
 
 	$product_id = isset( $_POST['product_id'] ) ? absint( $_POST['product_id'] ) : 0;
@@ -141,12 +143,8 @@ function tarteel_donation_bridge_handle() {
 		tarteel_donation_bridge_response( 'error', 'Choose a valid donation amount between R1 and R100 000.', $target_origin, 400 );
 	}
 
-	if ( function_exists( 'wc_load_cart' ) && ( null === WC()->session || null === WC()->cart ) ) {
-		wc_load_cart();
-	}
-
-	if ( ! WC()->session || ! WC()->cart ) {
-		tarteel_donation_bridge_response( 'error', 'The WooCommerce cart could not be started.', $target_origin, 500 );
+	if ( method_exists( WC()->session, 'set_customer_session_cookie' ) ) {
+		WC()->session->set_customer_session_cookie( true );
 	}
 
 	$cart_item_data = array(
@@ -159,22 +157,68 @@ function tarteel_donation_bridge_handle() {
 		tarteel_donation_bridge_response( 'error', 'The donation could not be added to the cart.', $target_origin, 500 );
 	}
 
-	if ( method_exists( WC()->session, 'set_customer_session_cookie' ) ) {
-		WC()->session->set_customer_session_cookie( true );
-	}
+	WC()->cart->calculate_totals();
 	WC()->cart->set_session();
 
-	tarteel_donation_bridge_response( 'success', 'General Donation has been added to your cart.', $target_origin, 200 );
+	if ( method_exists( WC()->session, 'save_data' ) ) {
+		WC()->session->save_data();
+	}
+
+	$token = wp_generate_password( 32, false, false );
+	set_transient(
+		'tarteel_donation_confirm_' . $token,
+		array(
+			'origin'        => $target_origin,
+			'cart_item_key' => $cart_item_key,
+		),
+		TARTEEL_DONATION_CONFIRM_TTL
+	);
+
+	$confirm_url = add_query_arg(
+		array(
+			'action' => 'tarteel_donation_bridge_confirm',
+			'token'  => rawurlencode( $token ),
+		),
+		admin_url( 'admin-post.php' )
+	);
+
+	wp_safe_redirect( $confirm_url, 303 );
+	exit;
 }
 add_action( 'admin_post_nopriv_tarteel_donation_bridge', 'tarteel_donation_bridge_handle' );
 add_action( 'admin_post_tarteel_donation_bridge', 'tarteel_donation_bridge_handle' );
 
 /**
- * Apply the selected donation amount to the cart line.
- *
- * @param WC_Cart $cart Cart object.
- * @return void
+ * Confirm that the just-created cart item can be read back from the new
+ * WooCommerce browser session before reporting success to the opener.
  */
+function tarteel_donation_bridge_confirm() {
+	$token = isset( $_GET['token'] ) ? sanitize_text_field( wp_unslash( $_GET['token'] ) ) : '';
+	$data  = $token ? get_transient( 'tarteel_donation_confirm_' . $token ) : false;
+
+	if ( ! is_array( $data ) || empty( $data['origin'] ) || empty( $data['cart_item_key'] ) ) {
+		tarteel_donation_bridge_response( 'error', 'The donation session could not be confirmed. Please try again.', '', 400 );
+	}
+
+	delete_transient( 'tarteel_donation_confirm_' . $token );
+	$target_origin = tarteel_donation_validate_origin( $data['origin'] );
+
+	if ( '' === $target_origin || ! tarteel_donation_boot_cart() ) {
+		tarteel_donation_bridge_response( 'error', 'The WooCommerce cart session could not be confirmed.', $target_origin, 500 );
+	}
+
+	$cart         = WC()->cart->get_cart();
+	$cart_item_key = (string) $data['cart_item_key'];
+
+	if ( ! isset( $cart[ $cart_item_key ] ) ) {
+		tarteel_donation_bridge_response( 'error', 'The donation was not retained in the cart. Please try again.', $target_origin, 409 );
+	}
+
+	tarteel_donation_bridge_response( 'success', 'General Donation has been added to your cart.', $target_origin, 200 );
+}
+add_action( 'admin_post_nopriv_tarteel_donation_bridge_confirm', 'tarteel_donation_bridge_confirm' );
+add_action( 'admin_post_tarteel_donation_bridge_confirm', 'tarteel_donation_bridge_confirm' );
+
 function tarteel_donation_apply_cart_price( $cart ) {
 	if ( ! $cart instanceof WC_Cart ) {
 		return;
@@ -188,13 +232,6 @@ function tarteel_donation_apply_cart_price( $cart ) {
 }
 add_action( 'woocommerce_before_calculate_totals', 'tarteel_donation_apply_cart_price', 20 );
 
-/**
- * Display the selected donation amount in the cart and checkout.
- *
- * @param array $item_data Existing item data.
- * @param array $cart_item Cart item.
- * @return array
- */
 function tarteel_donation_display_cart_amount( $item_data, $cart_item ) {
 	if ( isset( $cart_item['tarteel_donation_amount'] ) ) {
 		$item_data[] = array(
@@ -206,18 +243,9 @@ function tarteel_donation_display_cart_amount( $item_data, $cart_item ) {
 }
 add_filter( 'woocommerce_get_item_data', 'tarteel_donation_display_cart_amount', 10, 2 );
 
-/**
- * Save the selected amount to the order line item.
- *
- * @param WC_Order_Item_Product $item          Order item.
- * @param string                $cart_item_key Cart item key.
- * @param array                 $values        Cart item data.
- * @param WC_Order              $order         Order object.
- * @return void
- */
 function tarteel_donation_save_order_amount( $item, $cart_item_key, $values, $order ) {
 	if ( isset( $values['tarteel_donation_amount'] ) ) {
-		$item->add_meta_data( 'Donation amount', wc_price( (float) $values['tarteel_donation_amount'] ), true );
+		$item->add_meta_data( 'Donation amount', wc_format_decimal( $values['tarteel_donation_amount'], 2 ), true );
 	}
 }
 add_action( 'woocommerce_checkout_create_order_line_item', 'tarteel_donation_save_order_amount', 10, 4 );
