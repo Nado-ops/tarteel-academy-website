@@ -2,7 +2,7 @@
   "use strict";
 
   const PRODUCT_ENDPOINT = "/api/store-products";
-  const STORE_BASE = "https://shop.tarteel.co.za";
+  const STORE_BASE = "https://www.shop.tarteel.co.za";
   const BRIDGE_ENDPOINT = STORE_BASE + "/wp-admin/admin-post.php";
   const CART_URL = STORE_BASE + "/cart/";
   const DONATION_PRESETS = [50, 100, 250, 500];
