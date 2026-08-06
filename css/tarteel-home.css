@@ -196,8 +196,9 @@ body.modal-open { overflow: hidden; }
 }
 @media (max-width: 980px) {
   .site-header { height: 72px; } .header__inner { justify-content: space-between; }
-  .btn--apply { margin-left: auto; margin-right: 15px; }
-  .menu-toggle { display: block; order: 3; }
+  .site-brand { min-width: 0; flex-shrink: 1; overflow: hidden; }
+  .btn--apply { flex-shrink: 0; margin-left: auto; margin-right: 15px; white-space: nowrap; }
+  .menu-toggle { display: block; min-width: 44px; min-height: 44px; flex-shrink: 0; order: 3; }
   .primary-nav { position: absolute; z-index: 20; top: 117px; right: 0; left: 0; display: none; height: auto; padding: 18px 24px; align-items: stretch; background: #fff; box-shadow: 0 10px 20px rgba(0,0,0,.16); }
   .primary-nav.open { display: flex; flex-direction: column; gap: 0; }
   .primary-nav a { height: auto; padding: 11px 0; font-size: 14px; } .primary-nav a.active::after { display: none; }
@@ -236,5 +237,11 @@ body.modal-open { overflow: hidden; }
   .cta-section { padding-top: 18px; } .cta { min-height: 360px; } .cta-inner { min-height: 360px; } .cta__image { width: 100%; min-height: 130px; background-image: linear-gradient(180deg,transparent 40%,var(--navy)),url("../assets/images/cta-mosque-reference.png"); } .cta__copy { padding: 24px 20px 10px; align-items: center; } .cta-button { margin: 12px 0 26px; }
   .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 18px; } .footer-brand { grid-column: 1 / -1; grid-row: auto; padding-bottom: 18px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.2); }
   .footer-bottom { padding: 12px 0; gap: 8px; flex-direction: column; } .back-to-top { right: 16px; bottom: 68px; }
+}
+@media (max-width: 360px) {
+  .site-brand { gap: 6px; }
+  .site-brand-mark { width: 40px; height: 40px; }
+  .site-brand-text strong { font-size: 16px; letter-spacing: .1px; }
+  .site-brand-text small { font-size: 6px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; } }
